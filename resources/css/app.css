@@ -68,7 +68,7 @@ button:hover{
 }
 .nav-div{
     background-color: #154373;
-    height: 70vh;
+    height: calc(100vh - 50px);
     display: flex;
     flex-direction: column;
     position: sticky;
@@ -134,4 +134,9 @@ button:hover{
     text-align: center;
     margin: 10px auto;
 }
-
+div.docsSection>div{
+    margin: 10px;
+}
+div.Specialiter input,div.Theme-Projet input{
+    width: 100%;
+}

@@ -95,8 +95,16 @@
                 </div>
                 </div>
             </div>
-            <div>
-                <div>
+            <div class="Theme-Projet inputSection">
+                <label for="">Theme:</label>
+                <input type="text" placeholder="Theme du Projet">
+            </div>
+            <div class="Specialiter inputSection">
+                <label for="">Specialiter:</label>
+                <input type="text" placeholder="Specialiter">
+            </div>
+            <div class="docsSection">
+                <div class="">
                     <label for="doc1">Rapport</label>
                     <input id="doc1" type="file" required>
                 </div>
@@ -105,11 +113,14 @@
                     <input id="doc2" type="file" required>
                 </div>
 
+                <!-- <div>
+                    <label for="doc3">Rapport</label>
+                    <input id="doc3" type="file" required>
+                </div> -->
 
 
-                <label for="doc3">Rapport</label>
-                <input id="doc3" type="file" required>
             </div>
+            <button>SOUMMETRE</button>
         </form>
     </div>
 </div>
