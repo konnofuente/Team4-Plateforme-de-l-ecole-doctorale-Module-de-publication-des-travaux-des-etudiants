@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('filename');
             $table->string('filepath');
             $table->string('filetype');
+            $table->foreignId('user_id')->contrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

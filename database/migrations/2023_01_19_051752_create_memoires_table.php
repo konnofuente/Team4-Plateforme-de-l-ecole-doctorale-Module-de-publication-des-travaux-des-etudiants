@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string('language');
             $table->string('filepath');
             $table->string('filetype');
+            $table->foreignId('departement_id')->contrained('departenents')->onDelete('cascade');
+            $table->foreignId('domain_id')->contrained('domaines')->onDelete('cascade');
+            $table->foreignId('author_id')->contrained('authors')->onDelete('cascade');
+            $table->foreignId('user_id')->contrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

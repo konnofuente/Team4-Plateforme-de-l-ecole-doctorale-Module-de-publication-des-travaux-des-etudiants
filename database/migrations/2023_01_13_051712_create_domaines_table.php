@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('domaines', function (Blueprint $table) {
             $table->id();
             $table->string('description');
+            // $table->foreignId('memoire_id')->contrained('memoires')->onDelete('cascade');
             $table->timestamps();
         });
     }
