@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('memoires', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->Date('date');
+            $table->string('language');
+            $table->string('filepath');
+            $table->string('filetype');
             $table->timestamps();
         });
     }

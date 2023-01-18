@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('auth1');
             $table->string('auth2')->nullable();
             $table->string('auth3')->nullable();
-            $table->string('cord1');
-            $table->string('cord2')->nullable();
+            $table->string('sup1');
+            $table->string('sup2')->nullable();
             $table->string('mat1');
             $table->string('mat2')->nullable();
             $table->string('mat3')->nullable();

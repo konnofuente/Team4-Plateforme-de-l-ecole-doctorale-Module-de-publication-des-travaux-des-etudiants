@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('correction_attestations', function (Blueprint $table) {
             $table->id();
+            $table->string('code_correction');
+            $table->string('filename');
+            $table->string('filepath');
+            $table->string('filetype');
             $table->timestamps();
         });
     }

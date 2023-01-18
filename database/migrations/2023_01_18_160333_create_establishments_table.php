@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('defend_attestations', function (Blueprint $table) {
+        Schema::create('establishments', function (Blueprint $table) {
             $table->id();
-            $table->string('code_defend');
-            $table->string('filename');
-            $table->string('filepath');
-            $table->string('filetype');
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('defend_attestations');
+        Schema::dropIfExists('establishments');
     }
 };
