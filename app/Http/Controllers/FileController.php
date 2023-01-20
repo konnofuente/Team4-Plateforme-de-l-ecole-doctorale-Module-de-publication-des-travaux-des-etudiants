@@ -18,7 +18,7 @@ class FileController extends Controller
     public function store(Request $request )
     {
 
-        $file = $request->file;
+        $file = $request->file('file');
         $auth1= $request->auth1;
         $auth2= $request->auth2;
         $auth3= $request->auth3;

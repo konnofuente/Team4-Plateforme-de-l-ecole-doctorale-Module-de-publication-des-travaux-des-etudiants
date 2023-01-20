@@ -2,7 +2,7 @@
 @section('right-section')
 <div class="submit-div-container">
     <div class="submit-form-container">
-        <form class="grid2" method="POST">
+        <form class="grid2" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="inputSection ">
                 <h3>Etudiant 1 (Chef)</h3>
