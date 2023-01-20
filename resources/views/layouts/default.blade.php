@@ -10,8 +10,12 @@
        @include('includes.header')
    </header>
    <div id="main" class="template-main-container">
-           @yield('left-section')
-           @yield('right-section')
+    <div>
+        @yield('left-section')
+    </div>
+    <div class="right-section">
+        @yield('right-section')
+    </div>
    </div>
    <footer class="row">
        @include('includes.footer')

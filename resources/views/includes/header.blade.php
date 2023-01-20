@@ -1,11 +1,12 @@
 <div class="header-nav">
     <div class="header flex">
         <div class="logo">
-            Team 4
+            <img src="{{ Vite::asset('resources/images/icon.svg') }}" alt="">
+            <h1>COFF</h1>
         </div>
-        <div class="signIn flex" >
-            <button>Inscrivez Vous</button>
-            <button>Connecte vous</button>
+        <div class="signIn flexArn" >
+            <!-- <button>Inscrivez Vous</button> -->
+            <a href="http://" target="_blank" rel="noopener noreferrer">Sign In</a>
         </div>
     </div>
     <div class="beauty">

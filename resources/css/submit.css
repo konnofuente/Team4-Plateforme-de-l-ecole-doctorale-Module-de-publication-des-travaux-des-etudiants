@@ -24,6 +24,7 @@ input[type='text']:focus{
 label{
     display: block;
     color: #3d6356;
+    margin-bottom: 10px;
 }
 div.inputSection{
     margin: 10px;
@@ -36,4 +37,7 @@ div.inputSection div.grid2>div{
 }
 div.submit-form-container h3{
     color: #62876f;
+}
+div.home-main-container{
+    padding: 20px;
 }
