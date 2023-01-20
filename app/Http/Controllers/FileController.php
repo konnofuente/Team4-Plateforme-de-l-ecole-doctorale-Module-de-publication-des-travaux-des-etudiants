@@ -6,14 +6,16 @@ use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Models\File;
 use Smalot\PdfParser\Parser;
+use Symfony\Component\Console\Input\Input;
+
 
 class FileController extends Controller
 {
     public function index()
     {
-        return view('file');
+        return view('pages.Home');
     }
-    public function store(Request $request)
+    public function store(Request $request )
     {
 
         $file = $request->file;
@@ -23,21 +25,11 @@ class FileController extends Controller
         $cord1=$request->cord1;
         $cord2=$request->cord2;
         $mat1=$request->mat1;
-        $mat2=$request->mat3;
+        $mat2=$request->mat2;
         $mat3=$request->mat3;
-        
+        // use of pdf parser to read content from pdf
 
-        $request->validate([
-            'file' => 'required|mimes:pdf',
-            'auth1'=> 'required|unique:Authors',
-            'cord1'=> 'required',
-            'mat1'=> 'sometimes',
-        ]);
-
-        // use of pdf parser to read content from pdf 
         $fileName = $file->getClientOriginalName();
-
-        
         $pdfParser = new Parser();
         $pdf = $pdfParser->parseFile($file->path());
         $content = $pdf->getText();
@@ -61,7 +53,13 @@ class FileController extends Controller
         $author->mat2= $mat2;
         $author->mat3= $mat3;
         $author->file_id = $lastindex;
-        $author->save();
+
+        if( $author->save()){
+            return ('success');
+        }
+        else {
+            return ('faillll');
+        }
 
 
         // return response()->json([
@@ -71,11 +69,12 @@ class FileController extends Controller
         // ],201);
 
         // return redirect()->route('search')->with('success','product update succesfuly');
-        
+
         return redirect('search')->with('success', 'File uploaded successfullly...');
+
+
         // return redirect('search');
     }
-
     public function search(Request $request)
     {
         $search = $request['search'] ?? "";

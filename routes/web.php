@@ -17,24 +17,40 @@ use App\Http\Controllers\FileController;
 // Route::get('/', function () {
 //     return view('pages.deposit_file');
 // });
+
+
+//For GETTING homepage//
 Route::get('/', function () {
-    return view('file');
+    return view('pages.Home');
 });
+
+Route::get('/Submit', function () {
+    return view('pages.Submit');
+})->name('submit');
+
+Route::post('/Submit', [FileController::class, 'store'])->name('file.store');
+
+
+
+//Showing the //
 Route::get('/show', function () {
     return view('show');
 });
-Route::get('/data', function () {
-    return view('data');
-});
+// Route::get('/data', function () {
+//     return view('data');
+// });
 
 
+//For GETTING homepage//
+Route::get('Home', [FileController::class, 'index'])->name('file');
 
-Route::get('file', [FileController::class, 'index'])->name('file');
-Route::post('file', [FileController::class, 'store'])->name('file.store');
 
-Route::get('/submit',function(){
-    return view('submit');
-})->name('submit');
+//Submit Button action from the Submit docs page//
+
+
+// Route::get('/Submit',function(){
+//     return view('pages.Submit');
+// })->name('submit');
 
 Route::view('search', 'show');
 Route::get('find', [FileController::class, 'search']);
