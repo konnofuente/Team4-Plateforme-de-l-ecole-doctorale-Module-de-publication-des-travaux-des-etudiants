@@ -30,7 +30,4 @@
             </div>
         </div>
     @stop
-    <!-- @section('right-section')
-        <p>THis is the right section</p>
-    @stop -->
 </div>

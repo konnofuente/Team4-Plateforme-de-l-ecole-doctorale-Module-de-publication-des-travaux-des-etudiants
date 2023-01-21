@@ -17,6 +17,12 @@ class FileController extends Controller
     }
     public function store(Request $request )
     {
+        $request->validate([
+            'file' => 'required|mimes:pdf',
+            'auth1'=> 'required|unique:Authors',
+            'cord1'=> 'required',
+            'mat1'=> 'required',
+        ]);
 
         $file = $request->file('file');
         $auth1= $request->auth1;
@@ -55,10 +61,10 @@ class FileController extends Controller
         $author->file_id = $lastindex;
 
         if( $author->save()){
-            return ('success');
+            return to_route('Documents')->with('success','Your group and attestation has been succesfully registered');
         }
         else {
-            return ('faillll');
+            return redirect()->back()->with('error','An error occured, please try again later ');
         }
 
 
@@ -74,6 +80,11 @@ class FileController extends Controller
 
 
         // return redirect('search');
+    }
+    public function getAll(){
+        $files = File::all();
+        return view('pages.Documents')->with('docs',$files);
+        // return ($files[0]->content);
     }
     public function search(Request $request)
     {

@@ -28,8 +28,11 @@ Route::get('/Submit', function () {
     return view('pages.Submit');
 })->name('submit');
 
+//Handling The submission of the form //
 Route::post('/Submit', [FileController::class, 'store'])->name('file.store');
 
+//Displaying documents //
+Route::get('/Documents',[FileController::class, 'getAll'])->name('Documents');
 
 
 //Showing the //
