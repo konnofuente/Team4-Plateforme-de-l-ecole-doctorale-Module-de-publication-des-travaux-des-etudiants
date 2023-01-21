@@ -6,7 +6,7 @@
         @foreach($docs as $doc)
         <?php
             $txt = nl2br($doc->content);
-            $title = strtok($doc->orig_filename, '.');
+            $title = strtok($doc->orig_filename, '.pdf');
         ?>
             <div class="single-doc-container">
                 <div class="flexArn">
@@ -14,12 +14,14 @@
 
                 </div>
                 <div class="pdf-content-display">
+                    <a href="<?php echo route('singleDoc',['docId' => $doc->id])?>">
                     <h4>{{$title}}</h4>
                     <div>
                         <h4>Contents:</h4>
                         <pre>{{$doc->content}}</pre>
 
                     </div>
+                    </a>
                 </div>
                 <div>
 <h4>Author:<u> Ojong Ndip Shey Clinton</u> </h4>

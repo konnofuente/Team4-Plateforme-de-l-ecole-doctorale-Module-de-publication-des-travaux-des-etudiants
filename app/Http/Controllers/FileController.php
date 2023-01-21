@@ -61,7 +61,7 @@ class FileController extends Controller
         $author->file_id = $lastindex;
 
         if( $author->save()){
-            return to_route('Documents')->with('success','Your group and attestation has been succesfully registered');
+            return to_route('documents')->with('success','Your group and attestation has been succesfully registered');
         }
         else {
             return redirect()->back()->with('error','An error occured, please try again later ');
@@ -85,6 +85,12 @@ class FileController extends Controller
         $files = File::all();
         return view('pages.Documents')->with('docs',$files);
         // return ($files[0]->content);
+    }
+    public function getOne($docId){
+        // return ('The ID is'.$docId);
+
+        $file = File::find($docId);
+        return view('pages.singleDoc')->with('doc',$file);
     }
     public function search(Request $request)
     {

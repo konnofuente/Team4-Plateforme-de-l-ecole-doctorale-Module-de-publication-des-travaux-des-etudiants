@@ -32,8 +32,12 @@ Route::get('/Submit', function () {
 Route::post('/Submit', [FileController::class, 'store'])->name('file.store');
 
 //Displaying documents //
-Route::get('/Documents',[FileController::class, 'getAll'])->name('Documents');
+Route::get('/Documents',[FileController::class, 'getAll'])->name('documents');
 
+//Display a single Document
+Route::get('/Documents/{docId}',[FileController::class, 'getOne'])
+->name('singleDoc');
+;
 
 //Showing the //
 Route::get('/show', function () {

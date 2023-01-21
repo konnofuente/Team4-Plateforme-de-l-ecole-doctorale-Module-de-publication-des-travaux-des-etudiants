@@ -2,7 +2,7 @@
     <div class="header flex">
         <div class="logo">
             <img src="{{ Vite::asset('resources/images/icon.svg') }}" alt="">
-            <h1>COFF</h1>
+            <h1>COF</h1>
         </div>
         <div class="signIn flexArn" >
             <!-- <button>Inscrivez Vous</button> -->
@@ -22,7 +22,7 @@
             <div class="nav-div">
                 <a href="<?php echo route('file')?>">Home</a>
                 <a href="<?php echo route('submit')?>">Submit</a>
-                <a href="<?php echo route('file')?>">Search</a>
+                <a href="<?php echo route('documents')?>">Documents</a>
                 <a href="<?php echo route('file')?>">Documentation</a>
                 <a href="<?php echo route('file')?>">About</a>
                 <a href="<?php echo route('file')?>">News</a>

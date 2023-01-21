@@ -74,3 +74,31 @@ div.single-doc-container:hover{
     color: white;
     cursor: pointer;
 }
+div.single-doc-container:hover a{
+    color: white;
+}
+
+div.single-page-container{
+    background-color: #ece8dd;
+    padding: 30px;
+    max-width: 80vw;
+    overflow: hidden;
+}
+div.single-page-title h3{
+    text-align: center;
+    color: white;
+    background-color: #7c8fa1;
+    text-transform: capitalize;
+    padding: 20px;
+}
+
+div.single-page-content{
+    background-color: #e2f5fe;
+    padding: 20px;
+}
+div.meta-about{
+    color: white;
+    background-color: #030119;
+    padding: 10px;
+    margin-bottom: 10px;
+}
