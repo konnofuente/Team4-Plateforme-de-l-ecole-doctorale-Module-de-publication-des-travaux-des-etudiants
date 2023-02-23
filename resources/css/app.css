@@ -1,7 +1,9 @@
 @import url('submit.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap');
 *{
     margin: 0px;
     padding: 0px;
+    font-family: 'Poppins', sans-serif;
 }
 a{
     text-decoration: none;
