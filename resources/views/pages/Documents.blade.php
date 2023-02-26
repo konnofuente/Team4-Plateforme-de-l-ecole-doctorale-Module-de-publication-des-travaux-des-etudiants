@@ -1,5 +1,6 @@
 @extends('layouts.default')
 @section('right-section')
+
 <!--The General listing of all the available documents would be here brotha men them!-->
     <div>
         <div class="all-docs-container">
@@ -34,6 +35,7 @@
         </div>
     </div>
 @endsection
+
 <!-- @if ($errors->any())
     <div class="alert alert-danger">
         <ul>

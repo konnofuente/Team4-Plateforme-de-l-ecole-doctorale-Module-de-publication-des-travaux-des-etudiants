@@ -1,3 +1,4 @@
+
 <div class="header-nav">
     <div class="header flex">
         <div class="logo">
@@ -6,7 +7,7 @@
         </div>
         <div class="signIn flexArn" >
             <!-- <button>Inscrivez Vous</button> -->
-            <a href="http://" target="_blank" rel="noopener noreferrer">Sign In</a>
+            <a href="http://" target="_blank" rel="noopener noreferrer">Sign In <i class="fa-solid fa-circle-trash"></i> </a>
         </div>
     </div>
     <div class="beauty">
@@ -23,7 +24,7 @@
                 <a href="<?php echo route('file')?>">Home</a>
                 <a href="<?php echo route('submit')?>">Submit</a>
                 <a href="<?php echo route('documents')?>">Documents</a>
-                <a href="<?php echo route('file')?>">Documentation</a>
+                <a href="<?php echo route('Document.search')?>">Rechercher</a>
                 <a href="<?php echo route('file')?>">About</a>
                 <a href="<?php echo route('file')?>">News</a>
 

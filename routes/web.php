@@ -39,6 +39,9 @@ Route::get('/Documents/{docId}',[FileController::class, 'getOne'])
 ->name('singleDoc');
 ;
 
+Route::get('/Document/search',[FileController::class,'search'])->name('Document.search');
+
+
 //Showing the //
 Route::get('/show', function () {
     return view('show');

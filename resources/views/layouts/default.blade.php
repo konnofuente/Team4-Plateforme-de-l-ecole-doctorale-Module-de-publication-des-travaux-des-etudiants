@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    @vite(['resources/css/app.css','resources/css/style.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css','resources/css/style.css','resources/css/font-awesome/css/all.css'])
    @include('includes.head')
 </head>
 <body>

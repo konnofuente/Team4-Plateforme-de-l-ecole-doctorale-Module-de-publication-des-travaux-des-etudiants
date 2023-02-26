@@ -68,23 +68,20 @@ class FileController extends Controller
         }
 
 
-        // return response()->json([
-        //     'message' => 'Author Ajoutee avec Success',
-        //     'data' => $author
-
-        // ],201);
-
-        // return redirect()->route('search')->with('success','product update succesfuly');
 
         return redirect('search')->with('success', 'File uploaded successfullly...');
 
 
-        // return redirect('search');
+
     }
     public function getAll(){
         $files = File::all();
         return view('pages.Documents')->with('docs',$files);
         // return ($files[0]->content);
+    }
+    public function getAllWithString(){
+        $files = File::all();
+        return view('pages.search')->with('docs',$files);
     }
     public function getOne($docId){
         // return ('The ID is'.$docId);
@@ -94,20 +91,8 @@ class FileController extends Controller
     }
     public function search(Request $request)
     {
-        $search = $request['search'] ?? "";
-        if ($search != "") {
-            $file = File::where('content', 'LIKE', "%$search%")->get();
-        }
-        $text = strtolower($file);
-        $find = strtolower($request->search);
-        $pos = strpos($text, $find);
-        if ($pos == true) {
-
-            $message = "String was found";
-            return view('data', compact('file'));
-        } else {
-
-            echo "String not found.";
-        }
+        $search = $request['keyWord'] ?? "";
+        $docs = File::where('content', 'LIKE', "%$search%")->get();
+        return view('pages.search')->with('docs',$docs);
     }
 }
