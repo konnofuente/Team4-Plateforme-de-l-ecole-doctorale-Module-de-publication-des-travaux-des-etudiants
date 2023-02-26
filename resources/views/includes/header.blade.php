@@ -7,7 +7,7 @@
         </div>
         <div class="signIn flexArn" >
             <!-- <button>Inscrivez Vous</button> -->
-            <a href="http://" target="_blank" rel="noopener noreferrer">Sign In <i class="fa-solid fa-circle-trash"></i> </a>
+            <a href="http://" target="_blank" rel="noopener noreferrer">Sign In</a>
         </div>
     </div>
     <div class="beauty">
