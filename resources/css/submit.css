@@ -1,6 +1,3 @@
-*{
-
-}
 div.submit-div-container{
     margin: 30px;
 }
@@ -9,7 +6,7 @@ div.submit-div-container{
     background-color: #bfeaf5;
     border-radius: 2px;
  }
-input[type='text']{
+/* input[type='text']{
     border: none;
     height: 30px;
     width: 200px;
@@ -19,12 +16,47 @@ input[type='text']{
 input[type='text']:focus{
     outline: none;
     border-bottom: 4px solid #82aae3;
+} */
+/*-----------------------------*/
+/*-----------------------------*/
+/*-----------------------------*/
+div.input-icon-div{
+    border-right:1px solid grey;
+    padding:11px;
+    background-color:#337ab7;
 }
-
+input{
+    border: none;
+    padding: 0px 5px;
+    margin: 0px;
+    width: 400px;
+}
+input:focus{
+    outline: none;
+}
+div.input-section{
+    /* margin: 5px; */
+    width: 410px;
+    border: 2px solid #40E0D0;
+    display: flex;
+    margin-bottom: 15px;
+}
+ div.input-section:focus-within{
+    transition: .2s;
+    border: 2px solid white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+div.input-section i{
+    color: white;
+}
+/*-----------------------------*/
+/*-----------------------------*/
+/*-----------------------------*/
 label{
+    font-size: 14px;
+    font-style: italic;
     display: block;
-    color: #3d6356;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 div.inputSection{
     margin: 10px;
@@ -101,4 +133,33 @@ div.meta-about{
     background-color: #030119;
     padding: 10px;
     margin-bottom: 10px;
+}
+
+/* NEW HOMEPAGE STYLES HERER */
+div.useCase-box{
+    padding: 30px;
+    border-radius: 0px;
+    max-width: 400px;
+    margin: 40px auto;
+    background-color: #008080;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+p.useCaseText{
+    font-size: 14px;
+    margin: 10px 0px;
+}
+div.useCase-box .button{
+    margin-left:5px;
+}
+div.useCase-box >*{
+    padding: 10px;
+}
+form.student-code-login-form{
+    width: fit-content;
+    border-radius: 2px;
+    margin: 30px auto;
+    text-align: center;
+    background-color: #40E0D0;
+    padding: 30px;
 }

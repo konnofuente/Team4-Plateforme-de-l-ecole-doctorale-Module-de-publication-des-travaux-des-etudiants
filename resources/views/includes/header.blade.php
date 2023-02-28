@@ -5,9 +5,11 @@
             <img src="{{ Vite::asset('resources/images/icon.svg') }}" alt="">
             <h1>COF</h1>
         </div>
-        <div class="signIn flexArn" >
-            <!-- <button>Inscrivez Vous</button> -->
-            <a href="http://" target="_blank" rel="noopener noreferrer">Sign In</a>
+        <div class="signIn flexArn">
+        <a class="button">Se connecter
+        <i class="fa-solid fa-right-to-bracket" style="margin-left:10px;"></i></a>
+            <a class="button">S'inscrire
+            <i class="fa-solid fa-user-plus" style="margin-left:10px;"></i></a>
         </div>
     </div>
     <div class="beauty">

@@ -48,5 +48,9 @@ Route::get('Home', [FileController::class, 'index'])->name('file');
 //     return view('pages.Submit');
 // })->name('submit');
 
+Route::get('/login/student-code',function(){
+    return view('pages.Login.studentCode');
+})->name('login.student.code');
+
 Route::get('find', [FileController::class, 'search']);
 
