@@ -56,6 +56,11 @@ Route::get('/login/admin',function(){
     return view('pages.Login.admin-Login');
 })->name('login.admin');
 
+Route::get('/documents/submit',function(){
+    return view('pages.Document.submit');
+})->name('document.submit');
+
+
 Route::get('/login/normal',function(){
     return view('pages.Login.normal-login');
 })->name('login.normal');

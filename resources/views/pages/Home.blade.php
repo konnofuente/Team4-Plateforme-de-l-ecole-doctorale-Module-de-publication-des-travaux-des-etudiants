@@ -21,7 +21,7 @@
         <div class="useCase-box">
             <h2 class="usecase-title">Nouvel étudiant</h2>
             <p class="useCaseText">Sous êtes ici pour déposer votre mémoire de soutenance et les dossiers requis afin qu'ils soient vérifiés et corrigés par un administrateur ?</p>
-            <a href="{{route('login.normal')}}" class="button">Submit Docs Page</a>
+            <a href="{{route('document.submit')}}" class="button">Submit Docs Page</a>
         </div>
         <div class="useCase-box">
             <h2 class="usecase-title">Visiteur</h2>
