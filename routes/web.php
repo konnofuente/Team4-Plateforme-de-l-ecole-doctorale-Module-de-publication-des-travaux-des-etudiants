@@ -52,5 +52,13 @@ Route::get('/login/student-code',function(){
     return view('pages.Login.studentCode');
 })->name('login.student.code');
 
+Route::get('/login/admin',function(){
+    return view('pages.Login.admin-Login');
+})->name('login.admin');
+
+Route::get('/login/normal',function(){
+    return view('pages.Login.normal-login');
+})->name('login.normal');
+
 Route::get('find', [FileController::class, 'search']);
 
