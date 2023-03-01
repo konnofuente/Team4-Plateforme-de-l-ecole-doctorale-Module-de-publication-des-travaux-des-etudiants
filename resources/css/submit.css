@@ -13,15 +13,24 @@ div.input-icon-div{
     border-right:1px solid grey;
     padding:11px;
     background-color:#337ab7;
+    height: fit-content;
+
 }
 input[type='text']
 ,input[type='email']
 ,input[type='password']
+,input[type='tel']
 {
     border: none;
     padding: 0px 5px;
     margin: 0px;
     width: 100%;
+    height: 47px;
+
+}
+input[type='file']{
+    border: none;
+    padding: 10px;
 }
 input:focus{
     outline: none;
@@ -32,6 +41,7 @@ div.input-section{
     border: 2px solid #40E0D0;
     display: flex;
     margin-bottom: 15px;
+    height: fit-content;
 }
  div.input-section:focus-within{
     transition: .2s;
@@ -48,6 +58,7 @@ label{
     font-size: 14px;
     font-style: italic;
     display: block;
+    text-align: left;
     /* margin-bottom: 10px; */
 }
 div.inputSection{
@@ -56,12 +67,6 @@ div.inputSection{
     padding: 15px;
 }
 
-div.inputSection div.grid2>div{
-    margin: 10px 0px;
-}
-div.submit-form-container h3{
-    color: #62876f;
-}
 div.home-main-container{
     padding: 20px;
 }
@@ -154,4 +159,21 @@ form.student-code-login-form{
     text-align: center;
     background-color: #40E0D0;
     padding: 30px;
+}
+form label{
+    color: white;
+}
+.grid2 div.input-section{
+    width: 250px;
+}
+textarea{
+    resize: none;
+    border: none;
+    border-bottom: 3px solid #337ab7;
+    width: 95%;
+    padding: 5px;
+    position: relative;
+}
+textarea:focus{
+    outline: none;
 }
