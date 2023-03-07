@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\ThemeController;
 
 Route::get('/', function () {
     return view('pages.Home');
@@ -32,6 +33,14 @@ Route::controller(AuthController::class)->prefix('/Auth')->group(function(){
     Route::post('sign-up/etudiant','etudiant_no_code_login');
     Route::post('sign-in/etudiant-code','etudiant_code_login');
 
+});
+
+
+Route::controller(ThemeController::class)->prefix('/Admin')->group(function(){
+    Route::get('/themes/Gerer','get_all_memoires')->name('admin.gerer_memoires');
+    Route::get('/etudiants/Gerer');
+    Route::get('/admin/Gerer');
+    Route::get('/mon-compte');
 })
 
 ?>

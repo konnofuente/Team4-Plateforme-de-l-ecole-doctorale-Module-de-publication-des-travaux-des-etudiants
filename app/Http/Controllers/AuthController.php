@@ -43,7 +43,7 @@ class AuthController extends Controller
     public function visiteur_login(Request $request){
         $credentials = $request->only('email','password');
         if(Auth::attempt($credentials)){
-            return "Login was a succes!!";
+            return view("pages.Visiteur.home");
         }
     }
     public function visiteur_signup(Request $request){
@@ -62,7 +62,7 @@ class AuthController extends Controller
         if($visitor->save()){
             $credentials = $request->only('email','password');
             if(Auth::attempt($credentials)){
-                return "Visitor registration was a success!!";
+                return view("pages.Visiteur.home");
             }
         }
         return "An error occured! Please try again";
@@ -70,7 +70,7 @@ class AuthController extends Controller
     public function admin_login(Request $request){
         $credentials = $request->only('email','password');
         if(Auth::attempt($credentials) && (Auth()->user()->role == 'admin')){
-            return "You are an admin !";
+            return to_route('admin.gerer_memoires');
         }
         else if(Auth::attempt($credentials)){
             Auth::logout();
@@ -143,7 +143,7 @@ class AuthController extends Controller
        $auth2->name = $request->auth_2_name;
        $auth2->save();
 
-    return "Everything was a succes!!!!";
+    return view("pages.User.home");
     }
     public function etudiant_code_login(Request $request){
         return $request->email;

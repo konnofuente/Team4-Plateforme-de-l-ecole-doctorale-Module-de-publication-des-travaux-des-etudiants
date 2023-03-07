@@ -160,6 +160,9 @@ form.student-code-login-form{
     background-color: #40E0D0;
     padding: 30px;
 }
+form.marged{
+    margin: 20px;
+}
 form label{
     color: white;
 }

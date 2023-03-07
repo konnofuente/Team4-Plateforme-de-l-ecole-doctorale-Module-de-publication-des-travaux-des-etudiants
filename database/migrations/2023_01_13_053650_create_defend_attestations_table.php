@@ -14,6 +14,8 @@ return new class extends Migration
             $table->string('theme_id'); //The theme the attestation belongs to!
             $table->string('doc_path'); //The path of the document
             $table->longText('contents'); //The scanned contents
+            $table->boolean("isValid")->default(false);
+            $table->string("verified_by")->default(null);
         });
     }
 

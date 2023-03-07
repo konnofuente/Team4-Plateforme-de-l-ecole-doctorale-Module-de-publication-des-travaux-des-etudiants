@@ -2,12 +2,12 @@
 @section('right-section')
 <div>
     <div>
-        <form method="POST" class="student-code-login-form" enctype="multipart/form-data">
+        <form method="POST" class="student-code-login-form marged" enctype="multipart/form-data">
             @csrf
         <i class="fa-solid fa-file-certificate fa-6x" style="margin:30px;color:white;"></i>
 <div class="grid2" style="gap:50px 100px">
 <div>
-    <label for="theme" style="position:absolute; bottom:80px;">Theme:</label>
+    <label for="theme" style="position:absolute; bottom:90px;">Theme:</label>
     <div class="input-section" style="height:fit-content;width:100%">
         <div class="input-icon-div">
             <i class="fa-solid fa-input-text fa-lg"></i>

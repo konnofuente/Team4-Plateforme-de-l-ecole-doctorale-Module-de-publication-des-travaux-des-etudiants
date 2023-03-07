@@ -134,3 +134,8 @@ button:hover,
     background-color: white;
     transition: .3s;
 }
+div.loogenInHeader p:hover i{
+    cursor: pointer;
+    color: #40e0d0;
+    transition: .3s;
+}

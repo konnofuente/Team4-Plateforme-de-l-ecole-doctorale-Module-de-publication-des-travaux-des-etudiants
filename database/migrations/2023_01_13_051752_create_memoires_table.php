@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('doc_path');
             $table->string('theme_name');
             $table->longText('contents');
+            $table->boolean("isValid")->default(false);
+            $table->string("verified_by")->default(null);
         });
     }
 
@@ -24,3 +26,5 @@ return new class extends Migration
         Schema::dropIfExists('memoires');
     }
 };
+
+?>

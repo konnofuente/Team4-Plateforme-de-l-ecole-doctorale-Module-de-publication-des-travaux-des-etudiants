@@ -9,3 +9,5 @@ class themes extends Model
 {
     use HasFactory;
 }
+
+?>

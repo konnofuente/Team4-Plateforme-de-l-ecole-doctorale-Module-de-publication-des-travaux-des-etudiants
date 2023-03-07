@@ -20,6 +20,8 @@ return new class extends Migration
             $table->longText("description");
             $table->integer("chef_id");
             $table->string("chef_email");
+            $table->boolean("isValid")->default(false);
+            $table->string("verified_by")->default(null);
 
         });
     }
