@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('authors', function (Blueprint $table) {
+        Schema::create('themes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('telephone');
-            $table->boolean('is_chef')->default(false);
             $table->timestamps();
+            $table->string("theme");
+            $table->longText("description");
+            $table->integer("chef_id");
+            $table->string("chef_email");
+
         });
     }
 
@@ -30,6 +31,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('authors');
+        Schema::dropIfExists('themes');
     }
 };
+
+?>

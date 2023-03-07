@@ -8,7 +8,7 @@
         Avec votre code de connexion, vous auriez un label "auteur" lorsque vous commentez ou répondez aux questions posées par d'autres sur votre thèse de soutenance. <br>
         Cliquez ici pour vous connecter en utilisant le code unique qui vous a été accordé !
         </p>
-    <a href="{{route('login.student.code')}}" class="button">Connexion étudiant</a>
+    <a href="{{route('signin.etudiant-code')}}" class="button">Connexion étudiant</a>
 </div>
 <div class="useCase-box">
     <h2 class="usecase-title">Connexion admin</h2>
@@ -16,12 +16,12 @@
         Connectez-vous ici pour consulter les différents documents qui vous ont été attribués.<br>
         Après vérification, vous auriez le choix entre accepter et valider ou refuser et envoyer un mail à l'étudiant sur ce qui manque ou est incorrect parmi les documents.<br>
         </p>
-    <a href="{{route('login.admin')}}" class="button">Connexion admin</a>
+    <a href="{{route('signin.admin')}}" class="button">Connexion admin</a>
 </div>
         <div class="useCase-box">
             <h2 class="usecase-title">Nouvel étudiant</h2>
             <p class="useCaseText">Sous êtes ici pour déposer votre mémoire de soutenance et les dossiers requis afin qu'ils soient vérifiés et corrigés par un administrateur ?</p>
-            <a href="{{route('document.submit')}}" class="button">Submit Docs Page</a>
+            <a href="{{route('signup.etudiant')}}" class="button">Submit Docs Page</a>
         </div>
         <div class="useCase-box">
             <h2 class="usecase-title">Visiteur</h2>

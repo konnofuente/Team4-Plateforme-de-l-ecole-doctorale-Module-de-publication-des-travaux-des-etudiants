@@ -1,69 +1,37 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileController;
-
-
-
 
 Route::get('/', function () {
     return view('pages.Home');
 });
 
-Route::get('/Submit', function () {
-    return view('pages.Submit');
-})->name('submit');
-
-//Handling The submission of the form //
-Route::post('/Submit', [FileController::class, 'store'])->name('file.store');
-
-//Displaying documents //
-Route::get('/Documents',[FileController::class, 'getAll'])->name('documents');
-
-//Display a single Document
-Route::get('/Documents/{docId}',[FileController::class, 'getOne'])
-->name('singleDoc');
-;
-
-Route::get('/Document/search',[FileController::class,'search'])->name('Document.search');
-
-
-//Showing the //
-Route::get('/show', function () {
-    return view('show');
+Route::controller(FileController::class)->prefix('/Document')->group(function(){
+    Route::get('/','getAll');
+    Route::get('find','search');
+    Route::get('doc/{docId}','getOne');
 });
-// Route::get('/data', function () {
-//     return view('data');
-// });
 
+Route::controller(AuthController::class)->prefix('/Auth')->group(function(){
+    Route::get('sign-up/visiteur','visiteur_signup_page')->name('signup.visiteur');
+    Route::get('sign-up/admin','admin_signup')->name('signup.admin');
+    Route::get('sign-up/etudiant','etudiant_no_code')->name('signup.etudiant');
+    Route::get('sign-in/visiteur','visitor_login_page')->name('signin.visiteur');
+    Route::get('sign-in/admin','admin_login_page')->name('signin.admin');
+    Route::get('sign-in/etudiant-code','etudiant_code_login_page')->name('signin.etudiant-code');
+    Route::get('sign-in/etudiant-no-code','etudiant_no_code_login_page');
 
-//For GETTING homepage//
-Route::get('Home', [FileController::class, 'index'])->name('file');
+    Route::post('sign-up/visiteur','visiteur_signup');
+    Route::post('sign-in/visiteur','visiteur_login');
 
+    Route::post('sign-in/admin','admin_login');
+    Route::post('sign-up/admin','admin_signup');
 
-//Submit Button action from the Submit docs page//
+    Route::post('sign-up/etudiant','etudiant_no_code_login');
+    Route::post('sign-in/etudiant-code','etudiant_code_login');
 
+})
 
-// Route::get('/Submit',function(){
-//     return view('pages.Submit');
-// })->name('submit');
-
-Route::get('/login/student-code',function(){
-    return view('pages.Login.studentCode');
-})->name('login.student.code');
-
-Route::get('/login/admin',function(){
-    return view('pages.Login.admin-Login');
-})->name('login.admin');
-
-Route::get('/documents/submit',function(){
-    return view('pages.Document.submit');
-})->name('document.submit');
-
-
-Route::get('/login/normal',function(){
-    return view('pages.Login.normal-login');
-})->name('login.normal');
-
-Route::get('find', [FileController::class, 'search']);
-
+?>

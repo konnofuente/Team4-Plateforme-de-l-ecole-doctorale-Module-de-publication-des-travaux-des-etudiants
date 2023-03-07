@@ -6,9 +6,9 @@
             <h1>COF</h1>
         </div>
         <div class="signIn flexArn">
-        <a class="button">Se connecter
+        <a class="button" href="{{route('signin.visiteur')}}" >Se connecter
         <i class="fa-solid fa-right-to-bracket" style="margin-left:10px;"></i></a>
-            <a class="button">S'inscrire
+            <a class="button" href="{{route('signup.visiteur')}}">S'inscrire
             <i class="fa-solid fa-user-plus" style="margin-left:10px;"></i></a>
         </div>
     </div>
@@ -23,12 +23,7 @@
     @section('left-section')
         <div class="nav-div-container">
             <div class="nav-div">
-                <a href="<?php echo route('file')?>">Home</a>
-                <a href="<?php echo route('submit')?>">Submit</a>
-                <a href="<?php echo route('documents')?>">Documents</a>
-                <a href="<?php echo route('Document.search')?>">Rechercher</a>
-                <a href="<?php echo route('file')?>">About</a>
-                <a href="<?php echo route('file')?>">News</a>
+
 
             </div>
         </div>
