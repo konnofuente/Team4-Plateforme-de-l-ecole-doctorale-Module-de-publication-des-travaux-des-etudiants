@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\MemoiresController;
 use App\Http\Controllers\ThemeController;
 
 Route::get('/', function () {
@@ -47,7 +48,12 @@ Route::controller(ThemeController::class)->middleware('auth')->prefix('/Admin')-
     Route::post('/theme/{theme}/memoire/{id}/denie','denie_memoire')->name('admin.denie_memoire');
     Route::get('/admin/Gerer');
     Route::get('/mon-compte');
-})
+});
+
+Route::controller(MemoiresController::class)->group(function(){
+    Route::get('memoires','index')->name('memoires.all');
+    Route::get('memoires/memoire/{id}','show')->name('memoires.viewOne');
+});
 
 // Route::get('/')
 ?>

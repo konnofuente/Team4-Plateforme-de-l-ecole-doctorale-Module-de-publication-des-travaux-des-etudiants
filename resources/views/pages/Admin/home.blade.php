@@ -4,12 +4,15 @@
 <br>
 
     <h1>Unverified Themes</h1>
+    <div >
+
+    </div>
         @foreach($unverified_themes as $mem)
             <p>{{$mem->theme}}</p>
             <div style="border:1px solid black;width:fit-content;padding:10px">
 <!-- <a href="">Verify attestation</a>
 <a href="">Verify memoire</a> -->
-    <a href="{{route('admin.single_theme', ['theme' => $mem->id])}}">VIEW!!!</a>
+    <a href="{{route('admin.single_theme', ['theme' => $mem->id])}}">View Theme</a>
             </div>
         @endforeach
 

@@ -2,84 +2,59 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\defend_attestation;
 use App\Models\memoires;
+use App\Models\themes;
 use Illuminate\Http\Request;
+
 
 class MemoiresController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $themes = themes::all();
+        return view('pages.Document.AllDocs')->with('themes',$themes);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function show($id)
+    {
+        $theme = themes::find($id);
+        $memoire_path = memoires::where('theme_id',$id);
+        return "The id is $theme->theme";
+    }
+
     public function create()
     {
-        //
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\memoires  $memoires
-     * @return \Illuminate\Http\Response
-     */
-    public function show(memoires $memoires)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\memoires  $memoires
-     * @return \Illuminate\Http\Response
-     */
+
+
+
     public function edit(memoires $memoires)
     {
-        //
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\memoires  $memoires
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, memoires $memoires)
     {
-        //
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\memoires  $memoires
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(memoires $memoires)
     {
-        //
+
     }
 }
+
+?>

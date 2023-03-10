@@ -19,9 +19,9 @@
             <p style="margin:15px;">
             <i class="fa-lg fa-solid fa-gear"></i>
             </p>
-                <form action="{{route('logOut')}}" method="POST">
+                <form action="{{route('logOut')}}" method="POST" >
                     @csrf
-                    <button>Logout
+                    <button style="margin:7px;">Logout
                     <i class="fa-lg fa-solid fa-power-off"></i>
                     </button>
 
@@ -45,7 +45,7 @@
     @section('left-section')
         <div class="nav-div-container">
             <div class="nav-div">
-                <a href="">Voir les Themes</a>
+                <a href="{{route('memoires.all')}}">Voir les Themes</a>
                 <a href="">Recherche Themes</a>
                 <a href="">Recherche Auteurs</a>
                 <a href="">A propos du site</a>

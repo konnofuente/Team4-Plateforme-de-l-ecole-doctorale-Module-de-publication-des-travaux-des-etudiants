@@ -180,3 +180,26 @@ textarea{
 textarea:focus{
     outline: none;
 }
+div.themes-container{
+    margin: 20px;
+}
+div.single-theme-row{
+    margin: 20px 0px;
+    border-bottom: 5px solid black;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    color: white;
+    background-color: #008080;
+    padding: 10px;
+}
+
+div.single-theme-row:hover{
+    border-top: 1px solid #008080;
+    border-left: 1px solid #008080;
+    border-right: 1px solid #008080;
+    color: #008080;
+    background-color: white;
+    transition: .4s;
+    cursor: pointer;
+}

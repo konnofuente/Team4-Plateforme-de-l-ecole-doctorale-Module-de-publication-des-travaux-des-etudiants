@@ -11,6 +11,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
+function validateTheme($theme_id){
+    $memoire = memoires::where('theme_id',$theme_id);
+    $attestaion = defend_attestation::where('theme_id',$theme_id);
+
+    if($memoire->isValid == true && $attestaion->isValid == true){
+        $theme = themes::find($theme_id)->first();
+        $theme->isValid = true;
+        $theme->verified_by = Auth::user()->email;
+        $theme->save();
+    }
+}
+
 class ThemeController extends Controller
 {
     public function get_all_memoires(){
@@ -67,6 +79,7 @@ class ThemeController extends Controller
         $attestaion->isValid = true;
         $attestaion->verified_by = $user;
         $attestaion->save();
+        validateTheme($theme_id);
         return redirect()->back();
     }
     public function denie_attestation($theme_id,$doc_id,Request $request){
@@ -78,6 +91,7 @@ class ThemeController extends Controller
         $attestaion->isValid = false;
         $attestaion->verified_by = $user;
         $attestaion->save();
+
         return redirect()->back();
 
     }
@@ -90,7 +104,7 @@ class ThemeController extends Controller
         $memoire->isValid = true;
         $memoire->verified_by = $user;
         $memoire->save();
-
+        validateTheme($theme_id);
         return redirect()->back();
     }
     public function denie_memoire($theme_id,$doc_id,Request $request){
@@ -102,8 +116,11 @@ class ThemeController extends Controller
         $memoire->isValid = false;
         $memoire->verified_by = $user;
         $memoire->save();
+
         return redirect()->back();
     }
+
+
 
 }
 
