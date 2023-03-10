@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publication;
 
-use App\Models\responsible;
+use App\Models\Publication\responsible;
 use Illuminate\Http\Request;
 
 class ResponsibleController extends Controller
@@ -41,7 +41,7 @@ class ResponsibleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\responsible  $responsible
+     * @param  \App\Models\Publication\responsible  $responsible
      * @return \Illuminate\Http\Response
      */
     public function show(responsible $responsible)
@@ -52,7 +52,7 @@ class ResponsibleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\responsible  $responsible
+     * @param  \App\Models\Publication\responsible  $responsible
      * @return \Illuminate\Http\Response
      */
     public function edit(responsible $responsible)
@@ -64,7 +64,7 @@ class ResponsibleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\responsible  $responsible
+     * @param  \App\Models\Publication\responsible  $responsible
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, responsible $responsible)
@@ -75,7 +75,7 @@ class ResponsibleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\responsible  $responsible
+     * @param  \App\Models\Publication\responsible  $responsible
      * @return \Illuminate\Http\Response
      */
     public function destroy(responsible $responsible)

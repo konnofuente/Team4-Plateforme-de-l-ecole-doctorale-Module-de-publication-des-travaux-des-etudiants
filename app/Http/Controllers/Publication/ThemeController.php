@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publication;
 
-use App\Models\Author;
-use App\Models\defend_attestation;
-use App\Models\memoires;
-use App\Models\themes;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
+use App\Models\Publication\Author;
+use App\Models\Publication\defend_attestation;
+use App\Models\Publication\memoires;
+use App\Models\Publication\themes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use function App\Http\Controllers\validateTheme;
 
 function validateTheme($theme_id){
     $memoire = memoires::where('theme_id',$theme_id);

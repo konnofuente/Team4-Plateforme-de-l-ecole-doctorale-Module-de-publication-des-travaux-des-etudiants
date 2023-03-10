@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publication;
 
-use App\Models\mail;
+use App\Models\Publication\correction_attestation;
 use Illuminate\Http\Request;
 
-class MailController extends Controller
+class CorrectionAttestationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class MailController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\mail  $mail
+     * @param  \App\Models\Publication\correction_attestation  $correction_attestation
      * @return \Illuminate\Http\Response
      */
-    public function show(mail $mail)
+    public function show(correction_attestation $correction_attestation)
     {
         //
     }
@@ -52,10 +52,10 @@ class MailController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\mail  $mail
+     * @param  \App\Models\Publication\correction_attestation  $correction_attestation
      * @return \Illuminate\Http\Response
      */
-    public function edit(mail $mail)
+    public function edit(correction_attestation $correction_attestation)
     {
         //
     }
@@ -64,10 +64,10 @@ class MailController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\mail  $mail
+     * @param  \App\Models\Publication\correction_attestation  $correction_attestation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, mail $mail)
+    public function update(Request $request, correction_attestation $correction_attestation)
     {
         //
     }
@@ -75,10 +75,10 @@ class MailController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\mail  $mail
+     * @param  \App\Models\Publication\correction_attestation  $correction_attestation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(mail $mail)
+    public function destroy(correction_attestation $correction_attestation)
     {
         //
     }

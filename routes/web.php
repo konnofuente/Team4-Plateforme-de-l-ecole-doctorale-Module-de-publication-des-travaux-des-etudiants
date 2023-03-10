@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Publication\AuthController;
+use App\Http\Controllers\Publication\FileController;
+use App\Http\Controllers\Publication\MemoiresController;
+use App\Http\Controllers\Publication\ThemeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FileController;
-use App\Http\Controllers\MemoiresController;
-use App\Http\Controllers\ThemeController;
 
 Route::get('/', function () {
     return view('pages.Home');

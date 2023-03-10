@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publication;
 
-use App\Models\domaines;
+use App\Models\Publication\defend_attestation;
 use Illuminate\Http\Request;
 
-class DomainesController extends Controller
+class DefendAttestationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class DomainesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\domaines  $domaines
+     * @param  \App\Models\Publication\defend_attestation  $defend_attestation
      * @return \Illuminate\Http\Response
      */
-    public function show(domaines $domaines)
+    public function show(defend_attestation $defend_attestation)
     {
         //
     }
@@ -52,10 +52,10 @@ class DomainesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\domaines  $domaines
+     * @param  \App\Models\Publication\defend_attestation  $defend_attestation
      * @return \Illuminate\Http\Response
      */
-    public function edit(domaines $domaines)
+    public function edit(defend_attestation $defend_attestation)
     {
         //
     }
@@ -64,10 +64,10 @@ class DomainesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\domaines  $domaines
+     * @param  \App\Models\Publication\defend_attestation  $defend_attestation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, domaines $domaines)
+    public function update(Request $request, defend_attestation $defend_attestation)
     {
         //
     }
@@ -75,10 +75,10 @@ class DomainesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\domaines  $domaines
+     * @param  \App\Models\Publication\defend_attestation  $defend_attestation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(domaines $domaines)
+    public function destroy(defend_attestation $defend_attestation)
     {
         //
     }

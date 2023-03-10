@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publication;
 
-use App\Models\defend_attestation;
+use App\Models\Publication\school;
 use Illuminate\Http\Request;
 
-class DefendAttestationController extends Controller
+class SchoolController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class DefendAttestationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\defend_attestation  $defend_attestation
+     * @param  \App\Models\Publication\school  $school
      * @return \Illuminate\Http\Response
      */
-    public function show(defend_attestation $defend_attestation)
+    public function show(school $school)
     {
         //
     }
@@ -52,10 +52,10 @@ class DefendAttestationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\defend_attestation  $defend_attestation
+     * @param  \App\Models\Publication\school  $school
      * @return \Illuminate\Http\Response
      */
-    public function edit(defend_attestation $defend_attestation)
+    public function edit(school $school)
     {
         //
     }
@@ -64,10 +64,10 @@ class DefendAttestationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\defend_attestation  $defend_attestation
+     * @param  \App\Models\Publication\school  $school
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, defend_attestation $defend_attestation)
+    public function update(Request $request, school $school)
     {
         //
     }
@@ -75,10 +75,10 @@ class DefendAttestationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\defend_attestation  $defend_attestation
+     * @param  \App\Models\Publication\school  $school
      * @return \Illuminate\Http\Response
      */
-    public function destroy(defend_attestation $defend_attestation)
+    public function destroy(school $school)
     {
         //
     }

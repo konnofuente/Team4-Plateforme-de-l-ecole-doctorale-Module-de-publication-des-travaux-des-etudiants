@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publication;
 
-use App\Models\admin;
+use App\Models\Publication\domaines;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class DomainesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\admin  $admin
+     * @param  \App\Models\Publication\domaines  $domaines
      * @return \Illuminate\Http\Response
      */
-    public function show(admin $admin)
+    public function show(domaines $domaines)
     {
         //
     }
@@ -52,10 +52,10 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\admin  $admin
+     * @param  \App\Models\Publication\domaines  $domaines
      * @return \Illuminate\Http\Response
      */
-    public function edit(admin $admin)
+    public function edit(domaines $domaines)
     {
         //
     }
@@ -64,10 +64,10 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\admin  $admin
+     * @param  \App\Models\Publication\domaines  $domaines
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, admin $admin)
+    public function update(Request $request, domaines $domaines)
     {
         //
     }
@@ -75,12 +75,11 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\admin  $admin
+     * @param  \App\Models\Publication\domaines  $domaines
      * @return \Illuminate\Http\Response
      */
-    public function destroy(admin $admin)
+    public function destroy(domaines $domaines)
     {
         //
     }
 }
- ?>

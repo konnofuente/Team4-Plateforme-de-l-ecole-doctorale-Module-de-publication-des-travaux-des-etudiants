@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publication;
 
-use App\Models\school;
+use App\Models\Publication\visitor;
 use Illuminate\Http\Request;
 
-class SchoolController extends Controller
+class VisitorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class SchoolController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\school  $school
+     * @param  \App\Models\Publication\visitor  $visitor
      * @return \Illuminate\Http\Response
      */
-    public function show(school $school)
+    public function show(visitor $visitor)
     {
         //
     }
@@ -52,10 +52,10 @@ class SchoolController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\school  $school
+     * @param  \App\Models\Publication\visitor  $visitor
      * @return \Illuminate\Http\Response
      */
-    public function edit(school $school)
+    public function edit(visitor $visitor)
     {
         //
     }
@@ -64,10 +64,10 @@ class SchoolController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\school  $school
+     * @param  \App\Models\Publication\visitor  $visitor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, school $school)
+    public function update(Request $request, visitor $visitor)
     {
         //
     }
@@ -75,10 +75,10 @@ class SchoolController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\school  $school
+     * @param  \App\Models\Publication\visitor  $visitor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(school $school)
+    public function destroy(visitor $visitor)
     {
         //
     }

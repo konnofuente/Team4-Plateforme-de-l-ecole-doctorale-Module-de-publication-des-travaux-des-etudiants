@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publication;
 
-use App\Models\defend_attestation;
-use App\Models\memoires;
-use App\Models\themes;
+use App\Models\Publication\memoires;
+use App\Models\Publication\themes;
 use Illuminate\Http\Request;
 
 

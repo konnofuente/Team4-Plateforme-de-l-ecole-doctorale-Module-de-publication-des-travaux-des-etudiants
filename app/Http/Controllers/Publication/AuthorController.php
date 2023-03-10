@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publication;
 
+use App\Models\Publication\Author;
 use Illuminate\Http\Request;
-use App\Models\Author;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
 
 class AuthorController extends Controller
 {
@@ -54,7 +53,7 @@ class AuthorController extends Controller
         ],201);
     }
 
-    
+
     public function update(Request $req, $id) {
         $Author = Author::find($id);
         if (is_null($Author)) {
@@ -99,7 +98,7 @@ class AuthorController extends Controller
                 'message' => 'Author not found'
             ],404);
         }
-        
+
         return response()->json([
                 'data'=>$Author]
         );

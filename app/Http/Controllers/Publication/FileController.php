@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publication;
 
-use App\Models\Author;
+use App\Models\Publication\Author;
+use App\Models\Publication\File;
 use Illuminate\Http\Request;
-use App\Models\File;
 use Smalot\PdfParser\Parser;
-use Symfony\Component\Console\Input\Input;
 
 
 class FileController extends Controller

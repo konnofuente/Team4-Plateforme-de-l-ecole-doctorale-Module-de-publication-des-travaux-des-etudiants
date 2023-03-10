@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publication;
 
-use App\Models\Author;
-use App\Models\defend_attestation;
+use App\Models\Publication\Author;
+use App\Models\Publication\defend_attestation;
+use App\Models\Publication\memoires;
+use App\Models\Publication\themes;
+use App\Models\Publication\User;
 use Illuminate\Http\Request;
-use App\Models\memoires;
-use App\Models\themes;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;

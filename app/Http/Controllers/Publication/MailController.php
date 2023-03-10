@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publication;
 
-use App\Models\correction_attestation;
+use App\Models\Publication\mail;
 use Illuminate\Http\Request;
 
-class CorrectionAttestationController extends Controller
+class MailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class CorrectionAttestationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\correction_attestation  $correction_attestation
+     * @param  \App\Models\Publication\mail  $mail
      * @return \Illuminate\Http\Response
      */
-    public function show(correction_attestation $correction_attestation)
+    public function show(mail $mail)
     {
         //
     }
@@ -52,10 +52,10 @@ class CorrectionAttestationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\correction_attestation  $correction_attestation
+     * @param  \App\Models\Publication\mail  $mail
      * @return \Illuminate\Http\Response
      */
-    public function edit(correction_attestation $correction_attestation)
+    public function edit(mail $mail)
     {
         //
     }
@@ -64,10 +64,10 @@ class CorrectionAttestationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\correction_attestation  $correction_attestation
+     * @param  \App\Models\Publication\mail  $mail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, correction_attestation $correction_attestation)
+    public function update(Request $request, mail $mail)
     {
         //
     }
@@ -75,10 +75,10 @@ class CorrectionAttestationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\correction_attestation  $correction_attestation
+     * @param  \App\Models\Publication\mail  $mail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(correction_attestation $correction_attestation)
+    public function destroy(mail $mail)
     {
         //
     }
