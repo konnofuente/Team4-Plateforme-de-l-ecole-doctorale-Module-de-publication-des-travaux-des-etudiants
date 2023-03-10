@@ -7,7 +7,7 @@ use App\Http\Controllers\ThemeController;
 
 Route::get('/', function () {
     return view('pages.Home');
-});
+})->name('homePage');
 
 Route::controller(FileController::class)->prefix('/Document')->group(function(){
     Route::get('/','getAll');
@@ -19,7 +19,7 @@ Route::controller(AuthController::class)->prefix('/Auth')->group(function(){
     Route::get('sign-up/visiteur','visiteur_signup_page')->name('signup.visiteur');
     Route::get('sign-up/admin','admin_signup')->name('signup.admin');
     Route::get('sign-up/etudiant','etudiant_no_code')->name('signup.etudiant');
-    Route::get('sign-in/visiteur','visitor_login_page')->name('signin.visiteur');
+    Route::get('sign-in/visiteur','visitor_login_page')->name('login');
     Route::get('sign-in/admin','admin_login_page')->name('signin.admin');
     Route::get('sign-in/etudiant-code','etudiant_code_login_page')->name('signin.etudiant-code');
     Route::get('sign-in/etudiant-no-code','etudiant_no_code_login_page');
@@ -32,15 +32,19 @@ Route::controller(AuthController::class)->prefix('/Auth')->group(function(){
 
     Route::post('sign-up/etudiant','etudiant_no_code_login');
     Route::post('sign-in/etudiant-code','etudiant_code_login');
+    Route::post('logout','logOut')->name('logOut');
 
 });
 
 
-Route::controller(ThemeController::class)->prefix('/Admin')->group(function(){
-    Route::get('/themes/Gerer','get_all_memoires')->name('admin.gerer_memoires');
+Route::controller(ThemeController::class)->middleware('auth')->prefix('/Admin')->group(function(){
+    Route::get('/','get_all_memoires')->name('admin.gerer_memoires');
+    Route::get('/theme/{theme}','get_theme')->name('admin.single_theme');
+    Route::get('/theme/{theme}/view/{doc}','viewDoc')->name('viewDoc');
     Route::get('/etudiants/Gerer');
     Route::get('/admin/Gerer');
     Route::get('/mon-compte');
 })
 
+// Route::get('/')
 ?>

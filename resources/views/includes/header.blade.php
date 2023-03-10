@@ -6,7 +6,7 @@
             <h1>COF</h1>
         </div>
         <div class="signIn flexArn">
-        @if(Auth()->check())
+        @if(Auth::check())
         <div class="flexArn loogenInHeader">
 
             <p style="margin:15px;">
@@ -19,9 +19,16 @@
             <p style="margin:15px;">
             <i class="fa-lg fa-solid fa-gear"></i>
             </p>
+                <form action="{{route('logOut')}}" method="POST">
+                    @csrf
+                    <button>Logout
+                    <i class="fa-lg fa-solid fa-power-off"></i>
+                    </button>
+
+                </form>
         </div>
         @else
-        <a class="button" href="{{route('signin.visiteur')}}" >Se connecter
+        <a class="button" href="{{route('login')}}" >Se connecter
         <i class="fa-solid fa-right-to-bracket" style="margin-left:10px;"></i></a>
             <a class="button" href="{{route('signup.visiteur')}}">S'inscrire
             <i class="fa-solid fa-user-plus" style="margin-left:10px;"></i></a>
@@ -31,10 +38,9 @@
     <div class="beauty">
         <div class="pic-section">
             <div class="pic-text">
-            <p><b>Téléchargez vos rapports de soutenance</b></p>
+                <p><b>Téléchargez vos rapports de soutenance</b></p>
             </div>
-
-            </div>
+        </div>
     </div>
     @section('left-section')
         <div class="nav-div-container">

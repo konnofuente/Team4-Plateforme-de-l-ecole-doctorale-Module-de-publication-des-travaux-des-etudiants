@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer("chef_id");
             $table->string("chef_email");
             $table->boolean("isValid")->default(false);
-            $table->string("verified_by")->default(null);
+            $table->string("verified_by")->nullable();
 
         });
     }

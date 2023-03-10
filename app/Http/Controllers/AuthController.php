@@ -10,6 +10,7 @@ use App\Models\themes;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -79,6 +80,7 @@ class AuthController extends Controller
         Auth::logout();
         return "yooo";
     }
+
     public function admin_signup(Request $request){
         return $request->email;
     }
@@ -96,8 +98,10 @@ class AuthController extends Controller
         $user->email = $request->chef_email;
         $user->name = $request->chef_name;
         $user->role = "etudiant_no_code";
-        $user->password = Hash::make($request->password);
+        $ThePassword = Hash::make($request->password);
+        $user->password = $ThePassword;
         $user->save();
+
 
        $chef->email = $request->chef_email;
        $chef->telephone = $request->chef_tel;
@@ -143,10 +147,17 @@ class AuthController extends Controller
        $auth2->name = $request->auth_2_name;
        $auth2->save();
 
+    //    Auth::attempt($user->email,$user->password);
+    Auth::login($user);
     return view("pages.User.home");
     }
     public function etudiant_code_login(Request $request){
         return $request->email;
+    }
+    public function logOut(){
+        Auth::logout();
+        Session::regenerate();
+        return to_route('homePage');
     }
 }
  ?>

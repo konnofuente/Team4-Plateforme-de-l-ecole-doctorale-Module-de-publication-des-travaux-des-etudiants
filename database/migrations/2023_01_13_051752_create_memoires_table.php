@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('theme_name');
             $table->longText('contents');
             $table->boolean("isValid")->default(false);
-            $table->string("verified_by")->default(null);
+            $table->string("verified_by")->nullable();
         });
     }
 

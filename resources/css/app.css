@@ -139,3 +139,53 @@ div.loogenInHeader p:hover i{
     color: #40e0d0;
     transition: .3s;
 }
+div.embed-div{
+    margin: 10px;
+    padding: 10px;
+    border: 5px solid #337ab7;
+    border-radius: 0px;
+}
+
+div.embed-div h1{
+    font-size: 32px;
+    margin: 20px;
+    text-align: center;
+}
+form.succeed button{
+    background-color: #90EE90;
+    border: 1px solid #90EE90;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 1px;
+}
+
+form.succeed button:hover{
+    color: #90EE90;
+    border: 1px solid #90EE90;
+    background-color: white;
+}
+
+
+form.denail button{
+    background-color: red;
+    border: 1px solid red;
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+    border-radius: 1px;
+}
+
+form.denail button:hover{
+    color: red;
+    border: 1px solid red;
+    background-color: white;
+}
+
+form.admin-form textarea{
+    border: 1px solid red;
+    border-bottom: 5px solid red;
+}
+div.admin-decide li{
+    font-size: large;
+    margin: 10px 1px;
+}
