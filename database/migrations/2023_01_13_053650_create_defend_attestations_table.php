@@ -16,6 +16,7 @@ return new class extends Migration
             $table->longText('contents'); //The scanned contents
             $table->boolean("isValid")->default(false);
             $table->string("verified_by")->nullable();
+            $table->longText("error_in_doc")->nullable();
         });
     }
 

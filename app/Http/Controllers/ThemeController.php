@@ -7,15 +7,13 @@ use App\Models\defend_attestation;
 use App\Models\memoires;
 use App\Models\themes;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-
-
-
+use Illuminate\Http\Request;
 
 class ThemeController extends Controller
 {
     public function get_all_memoires(){
-        // $memoires = themes::all();
         $verified_themes = themes::where('isValid',true)->get();
         $unverified_themes = themes::where('isValid',false)->get();
 
@@ -60,6 +58,51 @@ class ThemeController extends Controller
 
             return response()->file($other);
 
+    }
+    public function accept_attestation($theme_id,$doc_id){
+        $theme = themes::find($theme_id);
+        $attestaion = defend_attestation::find($doc_id);
+        $user = Auth::user()->email;
+
+        $attestaion->isValid = true;
+        $attestaion->verified_by = $user;
+        $attestaion->save();
+        return redirect()->back();
+    }
+    public function denie_attestation($theme_id,$doc_id,Request $request){
+        $theme = themes::find($theme_id);
+        $attestaion = defend_attestation::find($doc_id);
+        $user = Auth::user()->email;
+
+        $attestaion->error_in_doc = $request->attestation_error;
+        $attestaion->isValid = false;
+        $attestaion->verified_by = $user;
+        $attestaion->save();
+        return redirect()->back();
+
+    }
+
+    public function accept_memoire($theme_id,$doc_id){
+        $theme = themes::find($theme_id);
+        $memoire = memoires::find($doc_id);
+        $user = Auth::user()->email;
+
+        $memoire->isValid = true;
+        $memoire->verified_by = $user;
+        $memoire->save();
+
+        return redirect()->back();
+    }
+    public function denie_memoire($theme_id,$doc_id,Request $request){
+        $theme = themes::find($theme_id);
+        $memoire = memoires::find($doc_id);
+        $user = Auth::user()->email;
+
+        $memoire->error_in_doc = $request->memoire_error;
+        $memoire->isValid = false;
+        $memoire->verified_by = $user;
+        $memoire->save();
+        return redirect()->back();
     }
 
 }

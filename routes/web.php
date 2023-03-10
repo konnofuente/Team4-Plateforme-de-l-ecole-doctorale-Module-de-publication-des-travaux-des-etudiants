@@ -41,7 +41,10 @@ Route::controller(ThemeController::class)->middleware('auth')->prefix('/Admin')-
     Route::get('/','get_all_memoires')->name('admin.gerer_memoires');
     Route::get('/theme/{theme}','get_theme')->name('admin.single_theme');
     Route::get('/theme/{theme}/view/{doc}','viewDoc')->name('viewDoc');
-    Route::get('/etudiants/Gerer');
+    Route::post('/theme/{theme}/attestation/{id}/accept','accept_attestation')->name('admin.accept_attestation');
+    Route::post('/theme/{theme}/attestation/{id}/denie','denie_attestation')->name('admin.denie_attestation');
+    Route::post('/theme/{theme}/memoire/{id}/accept','accept_memoire')->name('admin.accept_memoire');
+    Route::post('/theme/{theme}/memoire/{id}/denie','denie_memoire')->name('admin.denie_memoire');
     Route::get('/admin/Gerer');
     Route::get('/mon-compte');
 })
