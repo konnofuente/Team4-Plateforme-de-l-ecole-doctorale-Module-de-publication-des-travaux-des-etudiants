@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Admin\ChargeTd;
+use App\Models\Admin\Enseignant;
+use App\Models\Admin\Departement;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -21,6 +24,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'enseignant_id',
+        'profil_id',
+        'charge_td_id',
+        'departement_id'
     ];
 
     /**
@@ -41,4 +48,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function enseignant(){
+        return $this->belongsTo(Enseignant::class);
+    }
+    public function charge_td(){
+        return $this->belongsTo(ChargeTd::class);
+    }
+    public function departement(){
+        return $this->belongsTo(Departement::class);
+    }
 }
