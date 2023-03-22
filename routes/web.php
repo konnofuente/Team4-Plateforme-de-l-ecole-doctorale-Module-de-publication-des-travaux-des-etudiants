@@ -41,7 +41,11 @@ use App\Http\Controllers\EcoleDoctorat\EtudiantDossierController;
 |
 */
 
-Route::get('/', [AuthenticatedSessionController::class, 'create']);
+Route::get('/login', [AuthenticatedSessionController::class, 'create']);
+
+Route::get('/', function () {
+    return view("publication.publication");
+})->name('publication');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
