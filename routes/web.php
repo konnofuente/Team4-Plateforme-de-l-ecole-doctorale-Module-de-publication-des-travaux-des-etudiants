@@ -29,6 +29,7 @@ use App\Http\Controllers\EcoleDoctorat\InscriptionController;
 use App\Http\Controllers\Admin\GestionSceancePresenceController;
 use App\Http\Controllers\EcoleDoctorat\UniteRechercheController;
 use App\Http\Controllers\EcoleDoctorat\EtudiantDossierController;
+use App\Http\Controllers\Visiteur\VisiteurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,24 +42,13 @@ use App\Http\Controllers\EcoleDoctorat\EtudiantDossierController;
 |
 */
 
-Route::get('/', [AuthenticatedSessionController::class, 'create']);
+Route::get('/login', [AuthenticatedSessionController::class, 'create']);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
-
-Route::get('/GestionInscription', [GestionInscriptionTDController::class, 'index'])->name('InscriptionTd.index');
-
-Route::get('/Inscription/TDs/{niv_id}/{fil_id}', [GestionInscriptionTDController::class, 'show'])->name('Inscription.show');
-Route::get('/Inscription/Niveau', [GestionInscriptionTDController::class, 'show_niv'])->name('Inscription.show_niv');
-Route::get('/Inscription/GroupeTd/{id}', [GestionInscriptionTDController::class, 'showTdUe'])->name('Inscription.showTdUe');
-// Route::get('/Inscription/GroupeTd/Registration/{id}', [GestionInscriptionTDController::class, 'signTd'])->name('Inscription.signTd');
-Route::post('/Inscription/GroupeTd/{id}', [GestionInscriptionTDController::class, 'RegistrationTD'])->name('Inscription.RegistrationTD');
-Route::get('Inscription/form/{id}', [GestionInscriptionTDController::class, 'createForm'])->name('Inscription.form.createForm');
-Route::post('Inscription/form/{id}', [GestionInscriptionTDController::class, 'store'])->name('Inscription.form.store');
-
 
 Route::get('Admin/User/index', [UserController::class, 'index'])->name('Admin.user.index');
 Route::post('Admin/User/store', [UserController::class, 'store'])->name('Admin.user.store');
@@ -304,3 +294,25 @@ Route::get('Ecole_Doctorat/EmailEnvoi/{id}', [EmailController::class, 'envoieMai
 Route::get('Ecole_Doctorat/NoteEtudiant/{url}', [EmailController::class, 'noterEtudiant'])->name('Ecole_Doctorat.email.noterEtudiant');
 Route::post('Ecole_Doctorat/Note/{url}', [EmailController::class, 'note'])->name('Ecole_Doctorat.email.note');
 
+
+
+// Route::get('/', [GestionInscriptionTDController::class, 'index'])->name('InscriptionTd.index');
+// Route::get('/Inscription/TDs/{niv_id}/{fil_id}', [GestionInscriptionTDController::class, 'show'])->name('Inscription.show');
+// Route::get('/Inscription/Niveau', [GestionInscriptionTDController::class, 'show_niv'])->name('Inscription.show_niv');
+// Route::get('/Inscription/GroupeTd/{id}', [GestionInscriptionTDController::class, 'showTdUe'])->name('Inscription.showTdUe');
+
+
+
+// Route::get('/Inscription/GroupeTd/Registration/{id}', [GestionInscriptionTDController::class, 'signTd'])->name('Inscription.signTd');
+Route::post('/Inscription/GroupeTd/{id}', [GestionInscriptionTDController::class, 'RegistrationTD'])->name('Inscription.RegistrationTD');
+Route::get('Inscription/form/{id}', [GestionInscriptionTDController::class, 'createForm'])->name('Inscription.form.createForm');
+Route::post('Inscription/form/{id}', [GestionInscriptionTDController::class, 'store'])->name('Inscription.form.store');
+
+
+Route::get('/', [VisiteurController::class, 'index'])->name('visiteur.all');
+Route::get('/soummetre', [VisiteurController::class, 'create'])->name('visiteur.creer');
+Route::post('/soummetre',[VisiteurController::class, 'store'])->name('visiteur.store');
+Route::get('/download/{filePath}',[VisiteurController::class, 'download'])->name('visitor.downloadPdf');
+// Route::get('/Inscription/TDs/{niv_id}/{fil_id}', [GestionInscriptionTDController::class, 'show'])->name('Inscription.show');
+// Route::get('/Inscription/Niveau', [GestionInscriptionTDController::class, 'show_niv'])->name('Inscription.show_niv');
+// Route::get('/Inscription/GroupeTd/{id}', [GestionInscriptionTDController::class, 'showTdUe'])->name('Inscription.showTdUe');
