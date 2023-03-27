@@ -22,6 +22,21 @@
 8. To run vite :`$ npm run`  and launch your browser on the url from your local machine
 9. Enjoy !!!
 
+###How to configure your email credential in the project for mail operation
+1. open your .env file
+2. Add the followinf code in it will your gmail information
+    MAIL_MAILER=smtp
+    MAIL_HOST=smtp.gmail.com
+    MAIL_PORT=587
+    MAIL_USERNAME=your_gmail_username
+    MAIL_PASSWORD=your_gmail_password
+    MAIL_ENCRYPTION=tls
+    MAIL_FROM_ADDRESS=your_email_address
+    MAIL_FROM_NAME="${APP_NAME}"
+3. Replace your_gmail_username with your Gmail username, and your_gmail_password with your Gmail password. Also, make sure to update your_email_address with your own email address.
+4. Note that if you're using two-factor authentication for your Gmail account, you'll need to generate an "App Password" and use that instead of your regular password.
+
+
 
 #### SOME COMMAND
 1. for create controller => php artisan make:controller Api\UserController

@@ -41,6 +41,10 @@ class CreateProjetsTable extends Migration
             $table->string('encadreur_matricule');
 
             $table->string('encadreur_telephone');
+
+            $table->boolean('is_verified')->default(true);
+
+            $table->string('verification_code');
             
         });
     }
