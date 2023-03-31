@@ -47,7 +47,7 @@ class VisiteurController extends Controller
         $projet->chef_email = $request->chefMail;
         $projet->encadreur_email = $request->emailEncadreur;
         $projet->encadreur_matricule = $request->matriculeEncadreur;
-        $projet->encadreur_telephone = $request->telEncadreur;
+        // $projet->encadreur_telephone = $request->telEncadreur;
 
 
         $memoire_doc_name = $request->file('memoire_doc')->getClientOriginalName();
