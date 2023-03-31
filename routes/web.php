@@ -234,7 +234,9 @@ Route::get('Ecole_Doctorat/Reporting/index', [ReportingController::class, 'index
 
 /* Dossier */
 Route::get('Ecole_Doctorat/Dossier/index', [DossierController::class, 'index'])->name('Ecole_Doctorat.dossier.index');
-Route::get('Ecole_Doctorat/Dossier/show', [DossierController::class, 'show'])->name('Ecole_Doctorat.dossier.show');
+
+Route::get('Ecole_Doctorat/Dossier/voir/{id}', [DossierController::class, 'show'])->name('Ecole_Doctorat.dossier.voir');
+
 Route::get('Ecole_Doctorat/Dossier/show/{filiere_id}/{niveau_id}/{status}', [DossierController::class, 'links'])->name('Ecole_Doctorat.dossier.links');
 Route::get('Ecole_Doctorat/Dossier/jury_P', [DossierController::class, 'jury_P'])->name('Ecole_Doctorat.dossier.jury_P');
 Route::post('Ecole_Doctorat/Dossier/update', [DossierController::class, 'update'])->name('Ecole_Doctorat.dossier.update');

@@ -55,7 +55,7 @@ class ReportingController extends Controller
         return view('ecoleDoctorat.index',[
             'dossier_nombre'=>$dossier_nombre,
             'attente_note_nombre'=>$attente_note_nombre,
-            'datas'=>$data,
+
             'authorisation_valider_nombre'=>$authorisation_valider_nombre,
             'authorisation_nombre'=>$authorisation_nombre,
             'reporting'=>1,

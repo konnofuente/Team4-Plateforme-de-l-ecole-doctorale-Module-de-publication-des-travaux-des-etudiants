@@ -26,7 +26,7 @@
                     </li>
                     <li>
                         <a href="{{ route('Ecole_Doctorat.dossier.index') }}"
-                            @if (isset($dossier)) class="active" @endif>
+                            @if (isset($projets_count) || isset($selectedProject)) class="active" @endif>
                             <i class="bi bi-circle"></i><span>Dossier @if (isset($dossier_nombre_1))
                                     @if ($dossier_nombre_1 != 0)
                                         <span class="text-success">{{ $dossier_nombre_1 }}</span>
