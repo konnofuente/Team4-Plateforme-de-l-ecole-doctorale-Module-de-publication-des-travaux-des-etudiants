@@ -44,5 +44,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('chargeTD', function(User $user){
             return $user->profil_id==5;
         });
+        Gate::define('etudiant',function(User $user){
+            return $user->profil_id==6;
+        });
     }
 }

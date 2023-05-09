@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Your Code Has Been Generated</title>
+    <title>Project Validated</title>
 </head>
 <body>
-    <p>Your code is: {{ $code }}</p>
+
+    <h1 align="center">Thanks for Submitting your Project to Our website!</h1>
+    <p>Your Documents have been succesfully validated and accepted !</p>
+    
+
+
 </body>
 </html>

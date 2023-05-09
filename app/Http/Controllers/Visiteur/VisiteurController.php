@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Visiteur;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Visiteur\Projets;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\CodeGenerated;
+
 
 
 class VisiteurController extends Controller
@@ -18,7 +17,7 @@ class VisiteurController extends Controller
      */
     public function index()
     {
-        $projets = Projets::all();
+        $projets = Projets::where('is_valid',1)->get();
         return view('visiteur.viewAllDocs')->with('projects',$projets);
     }
 
@@ -41,8 +40,7 @@ class VisiteurController extends Controller
     public function store(Request $request)
     {
         //the part that get the chef matricule and generated a code base on the matricule
-        $matricule = $request->chefMat;
-        $verification_code = substr($matricule, 0, 3) . '-' . rand(1000, 9999);
+
 
         $projet = new Projets();
         $projet->theme = $request->projet_theme;
@@ -54,12 +52,12 @@ class VisiteurController extends Controller
         $projet->chef_email = $request->chefMail;
         $projet->encadreur_email = $request->emailEncadreur;
         $projet->encadreur_matricule = $request->matriculeEncadreur;
-        // $projet->encadreur_telephone = $request->telEncadreur;
-        $projet->verification_code = $verification_code;
+        $projet->encadreur_telephone = $request->telEncadreur;
+
 
          // Send the email with the code
         // Mail::to($projet->chef_email)->send(new CodeGenerated($verification_code));
-        Mail::to($projet->chef_email)->send(new CodeGenerated($verification_code));
+
 
         $memoire_doc_name = $request->file('memoire_doc')->getClientOriginalName();
         $projet->memoire_path = $memoire_doc_name;
@@ -71,8 +69,8 @@ class VisiteurController extends Controller
         $request->file('attestation_doc')->move(public_path("uploads/themes/{$projet->theme}/attestation"), $attestation_doc_name);
 
         if($projet->save()){
-            // return redirect()->route('visiteur.all');
-            return view('email.code-generated', ['code' => $verification_code]);
+            return redirect()->route('visiteur.all');
+
         }
         else redirect()->back();
 

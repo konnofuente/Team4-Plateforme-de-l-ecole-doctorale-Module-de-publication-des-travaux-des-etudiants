@@ -290,7 +290,22 @@
                 </a>
             </li>
         @endif
-
+        @if (Auth::user()->profil_id == 6)
+        <li class="nav-item">
+                <a class="nav-link @if (!isset($utilisateur_c)) collapsed @endif "
+                    href="{{ route('Admin.Utilisateur.create') }}">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                    <span>Gerer mon Dossier</span>
+                </a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link @if (!isset($utilisateur_c)) collapsed @endif "
+                    href="{{ route('Admin.Utilisateur.index') }}">
+                    <i class="fa-solid fa-users-between-lines"></i>
+                    <span>Gerer mon Dossier</span>
+                </a>
+            </li> -->
+        @endif
 
 
     </ul>
