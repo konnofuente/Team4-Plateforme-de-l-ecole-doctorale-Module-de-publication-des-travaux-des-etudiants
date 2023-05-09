@@ -2,6 +2,15 @@
 @section('content')
     @include('layouts.admin.sidebarEcoleDoctorat')
     <main id="main" class="main">
+        @if (session('success'))
+            <div class="alert alert-success">
+                <p>{{session('success')}}</p>
+            </div>
+        @elseif(session('erreur'))
+            <div class="alert alert-danger">
+                <p>{{session('erreur')}}</p>
+            </div>
+        @endif
         <div class="pagetitle">
             <h1>Liste de Themes</h1>
             <nav>
@@ -47,7 +56,7 @@
                         <br>
                         @if($unchecked_projects->count() > 0)
                         <table class="table table-hover text-center">
-                            <p>Themes Pas encore Verifier</p>
+                            <p align="center" class="text-info">Themes Pas encore Verifier</p>
                             @foreach ($unchecked_projects as $project)
                                 <p>{{$project->theme}}</p>
                             @endforeach
@@ -71,27 +80,27 @@
                                     <td><?php echo(date('Y', strtotime($project->created_at)))?></td>
                                     <td>
                                             <a class="btn btn-success" href="{{ route('Ecole_Doctorat.dossier.voir', $project->id) }}">
-                                            <i class="fa-solid fa-folder-open"></i>Voir plus</a> 
+                                            <i class="fa-solid fa-folder-open"></i>Voir plus</a>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                             </table>
                             @else
-                            <p>Pas de themes non-varifier pour l'instant</p>
+                            <p class="text-success"><b>Pas de themes non-verifier pour l'instant</b> </p>
 
                             @endif
 
                             @if($checked_valid->count() > 0)
                             <table class="table table-hover text-center">
-                            <p>Themes Deja verifier et Valide</p>
+                            <p align="center" class="text-info">Themes Deja verifier et Valide</p>
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Matricule Du Chef</th>
                                     <th scope="col">Theme</th>
                                     <th scope="col">Encadreur</th>
-                                    <th scope="col">code</th>
+                                    <th scope="col">Verifier par</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -102,19 +111,21 @@
                                     <td>{{$project->chef_matricule}}</td>
                                     <td>{{$project->theme}}</td>
                                     <td>{{$project->encadreur_email}}</td>
-                                    <td>{{$project->verification_code}}</td>
-                                    <td>ACTIONS HERE</td>
+                                    <td>{{$project->checked_by}}</td>
+                                    <td>
+                                            <a class="btn btn-success" href="{{ route('Ecole_Doctorat.dossier.voir', $project->id) }}">Revoir</a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                             </table>
                             @else
-                                <p>Pas de themes deja valider pour linstant</p>
+                                <p class="text-success"><b>Pas de themes deja valider pour linstant</b></p>
                             @endif
 
                             @if($checked_unvalid->count() > 0)
                             <table class="table table-hover text-center">
-                            <p>Themes Non valide</p>
+                            <p align="center" class="text-info">Themes Non valide</p>
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -133,13 +144,15 @@
                                     <td>{{$project->theme}}</td>
                                     <td>{{$project->encadreur_email}}</td>
                                     <td>{{$project->created_at}}</td>
-                                    <td>ACTIONS HERE</td>
+                                    <td>
+                                            <a class="btn btn-success" href="{{ route('Ecole_Doctorat.dossier.voir', $project->id) }}">Revoir</a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                             </table>
                             @else
-                                <p>Pas de themes refuser pour l'instant</p>
+                                <p class="text-success"><b>Pas de themes refuser pour l'instant</b></p>
                             @endif
 
                 <!-- End Dark Table -->

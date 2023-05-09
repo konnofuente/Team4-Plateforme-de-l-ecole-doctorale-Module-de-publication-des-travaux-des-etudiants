@@ -233,9 +233,19 @@ Route::post('Admin/Requete/update', [RequeteController::class, 'update'])->name(
 Route::get('Ecole_Doctorat/Reporting/index', [ReportingController::class, 'index'])->name('Ecole_Doctorat.reporting');
 
 /* Dossier */
+
+#ADMIN VERIFICATIONS (VALIDATION AND REJECTION)
 Route::get('Ecole_Doctorat/Dossier/index', [DossierController::class, 'index'])->name('Ecole_Doctorat.dossier.index');
 
 Route::get('Ecole_Doctorat/Dossier/voir/{id}', [DossierController::class, 'show'])->name('Ecole_Doctorat.dossier.voir');
+
+//THESE ARE THE TWO FUNCTIONS
+Route::post('Ecole_Doctorat/Dossier/voir/{id}/valider', [DossierController::class, 'valider'])->name('Ecole_Doctorat.dossier.actions.valider');
+Route::post('Ecole_Doctorat/Dossier/voir/{id}/rejeter', [DossierController::class, 'rejeter'])->name('Ecole_Doctorat.dossier.actions.rejeter');
+
+
+
+
 
 Route::get('Ecole_Doctorat/Dossier/show/{filiere_id}/{niveau_id}/{status}', [DossierController::class, 'links'])->name('Ecole_Doctorat.dossier.links');
 Route::get('Ecole_Doctorat/Dossier/jury_P', [DossierController::class, 'jury_P'])->name('Ecole_Doctorat.dossier.jury_P');

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Visiteur\Projets;
 
+
+
 class VisiteurController extends Controller
 {
     /**
@@ -15,7 +17,7 @@ class VisiteurController extends Controller
      */
     public function index()
     {
-        $projets = Projets::all();
+        $projets = Projets::where('is_valid',1)->get();
         return view('visiteur.viewAllDocs')->with('projects',$projets);
     }
 
@@ -37,6 +39,9 @@ class VisiteurController extends Controller
      */
     public function store(Request $request)
     {
+        //the part that get the chef matricule and generated a code base on the matricule
+
+
         $projet = new Projets();
         $projet->theme = $request->projet_theme;
         $projet->abstract = $request->projet_abstract;
@@ -47,7 +52,11 @@ class VisiteurController extends Controller
         $projet->chef_email = $request->chefMail;
         $projet->encadreur_email = $request->emailEncadreur;
         $projet->encadreur_matricule = $request->matriculeEncadreur;
-        // $projet->encadreur_telephone = $request->telEncadreur;
+        $projet->encadreur_telephone = $request->telEncadreur;
+
+
+         // Send the email with the code
+        // Mail::to($projet->chef_email)->send(new CodeGenerated($verification_code));
 
 
         $memoire_doc_name = $request->file('memoire_doc')->getClientOriginalName();
@@ -61,6 +70,7 @@ class VisiteurController extends Controller
 
         if($projet->save()){
             return redirect()->route('visiteur.all');
+
         }
         else redirect()->back();
 

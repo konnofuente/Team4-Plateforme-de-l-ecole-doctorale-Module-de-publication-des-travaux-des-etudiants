@@ -44,7 +44,13 @@ class CreateProjetsTable extends Migration
 
             $table->string('checked_by')->nullable(); //
 
-            $table->string('verification_code')->nullable();
+             $table->string('verification_code')->nullable();
+
+            $table->string('encadreur_telephone');
+
+            // $table->boolean('is_verified')->default(true);
+
+            // $table->string('verification_code');
 
         });
     }
