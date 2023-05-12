@@ -324,6 +324,8 @@ Route::post('Inscription/form/{id}', [GestionInscriptionTDController::class, 'st
 Route::get('/', [VisiteurController::class, 'index'])->name('visiteur.all');
 Route::get('/soummetre', [VisiteurController::class, 'create'])->name('visiteur.creer');
 Route::post('/soummetre',[VisiteurController::class, 'store'])->name('visiteur.store');
+Route::get('/soummetre_Finale', [VisiteurController::class, 'createSecond'])->name('visiteur.creerFinale');
+Route::post('/soummetre_Finale', [VisiteurController::class, 'storeSecond'])->name('visiteur.storeFinale');
 Route::get('/download/{filePath}',[VisiteurController::class, 'download'])->name('visitor.downloadPdf');
 // Route::get('/Inscription/TDs/{niv_id}/{fil_id}', [GestionInscriptionTDController::class, 'show'])->name('Inscription.show');
 // Route::get('/Inscription/Niveau', [GestionInscriptionTDController::class, 'show_niv'])->name('Inscription.show_niv');

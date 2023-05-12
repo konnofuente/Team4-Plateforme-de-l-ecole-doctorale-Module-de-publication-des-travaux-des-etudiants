@@ -121,4 +121,53 @@ class VisiteurController extends Controller
     {
         //
     }
+
+    public function createSecond(){
+        return view('visiteur.submitSecondDoc');
+    }
+
+    public function storeSecond(Request $request){
+        $selectedProj = Projets::where('verification_code',$request->codeFinale)->first();
+        if($selectedProj){
+            if($selectedProj->is_valid == 1){
+                $request->session()->flash("erreur","Ce Projet a deja ete marque comme valide");
+                return redirect()->route('visiteur.creerFinale');
+            }
+            else if($selectedProj->is_valid == 3){
+                $request->session()->flash("erreur","Ce code a deja ete utilise");
+                return redirect()->route('visiteur.creerFinale');
+            }
+            else if($selectedProj->is_valid == 2){
+                if($request->hasFile('memoire_doc')){
+
+                    $memoire_doc_name = $request->file('memoire_doc')->getClientOriginalName();
+                    $selectedProj->memoire_path = $memoire_doc_name;
+                    $request->file('memoire_doc')->move(public_path("uploads/themes/{$selectedProj->theme}/memoire/resoumission"), $memoire_doc_name);
+
+
+                    $attestation_doc_name = $request->file('attestation_doc')->getClientOriginalName();
+                    $selectedProj->attestation_path = $attestation_doc_name;
+                    $request->file('attestation_doc')->move(public_path("uploads/themes/{$selectedProj->theme}/attestation/resoumission"), $attestation_doc_name);
+
+                    $selectedProj->is_valid = 3;
+
+                    if($selectedProj->save()){
+                        $request->session()->flash("success","Vos documents ont ete resoumis avec succes!. vous receverez un mail quand l'administrateur verifie");
+                        return redirect()->route('visiteur.creerFinale');
+
+                    }
+                    else redirect()->back();
+                } else if($request->chefMat){
+                    $request->session()->flash("success","Code Valide, Vous pouver maintenant resoumetre vos document");
+                    return view('visiteur.submitSecondDoc')->with("codeCorrect",true)->with('verifiCode',$selectedProj->verification_code);
+                }
+            }
+
+        }
+
+        else{
+            $request->session()->flash("erreur","Ce code est invalide");
+            return redirect()->route('visiteur.creerFinale');
+        }
+    }
 }

@@ -40,11 +40,15 @@ class CreateProjetsTable extends Migration
 
             $table->string('encadreur_matricule');
 
-            $table->integer('is_valid')->default(0); // 0 for unchecked, 1 for valid and code has been sent, 2 for invalid
+            $table->integer('is_valid')->default(0);
+            // 0 for unchecked,
+            // 1 for valid and code has been sent,
+            // 2 for invalid
+            // 3 for resubmitted Projects waiting to be reverified
 
             $table->string('checked_by')->nullable(); //
 
-             $table->string('verification_code')->nullable();
+             $table->string('verification_code')->nullable()->unique();
 
             $table->string('encadreur_telephone');
 

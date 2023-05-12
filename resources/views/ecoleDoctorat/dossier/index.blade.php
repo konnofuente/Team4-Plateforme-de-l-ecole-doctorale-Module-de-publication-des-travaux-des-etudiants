@@ -155,6 +155,44 @@
                                 <p class="text-success"><b>Pas de themes refuser pour l'instant</b></p>
                             @endif
 
+                            <!-- Check for resumbitted projects!!!! -->
+                            @if($unvalid_resubmitted->count() > 0)
+                        <table class="table table-hover text-center">
+                            <p align="center" class="text-info">Themes refuser au paravant et resoumis</p>
+                            @foreach ($unvalid_resubmitted as $project)
+                                <p>{{$project->theme}}</p>
+                            @endforeach
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Matricule Du Chef</th>
+                                    <th scope="col">Theme</th>
+                                    <th scope="col">Encadreur</th>
+                                    <th scope="col">Année</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodys">
+                                @foreach ($unvalid_resubmitted as $project)
+                                <tr>
+                                    <td>{{ $project->id }}</td>
+                                    <td>{{$project->chef_matricule}}</td>
+                                    <td>{{$project->theme}}</td>
+                                    <td>{{$project->encadreur_email}}</td>
+                                    <td><?php echo(date('Y', strtotime($project->created_at)))?></td>
+                                    <td>
+                                            <a class="btn btn-success" href="{{ route('Ecole_Doctorat.dossier.voir', $project->id) }}">
+                                            <i class="fa-solid fa-folder-open"></i>Voir plus</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                            </table>
+                            @else
+                            <p class="text-success"><b>Pas de themes resoummis pour l'instant</b> </p>
+
+                            @endif
+
                 <!-- End Dark Table -->
 
             </div>

@@ -26,12 +26,14 @@ class DossierController extends Controller
         $unchecked_projects= Projets::where('is_valid',0)->get();
         $checked_valid= Projets::where('is_valid',1)->get();
         $checked_unvalid= Projets::where('is_valid',2)->get();
+        $unvalid_resubmitted = Projets::where('is_valid',3)->get();
 
         return view('ecoleDoctorat.dossier.index',[
             'projets_count'=>Projets::all()->count(),
             'unchecked_projects'=>$unchecked_projects,
             'checked_valid'=>$checked_valid,
-            'checked_unvalid'=>$checked_unvalid
+            'checked_unvalid'=>$checked_unvalid,
+            'unvalid_resubmitted'=>$unvalid_resubmitted
         ]);
         //The view fot this is found in dossier/index.blade.php
     }

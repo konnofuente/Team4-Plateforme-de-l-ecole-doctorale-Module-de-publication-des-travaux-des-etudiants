@@ -40,14 +40,25 @@
     <div style="margin:100px 0px; background-color:white; padding:20px 20px; border-radius:10px;box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);">
         <h1 align="center" style="margin:20px 0px">Attestation de soutenance</h1>
         <div>
-        <embed src="{{ asset("uploads/themes/$selectedProject->theme/attestation/$selectedProject->attestation_path") }}" type="application/pdf" width="100%" height="600px" >
+            @if($selectedProject->is_valid == 3)
+            <embed src="{{ asset("uploads/themes/$selectedProject->theme/attestation/resoumission/$selectedProject->attestation_path") }}" type="application/pdf" width="100%" height="600px" >
+            @else
+            <embed src="{{ asset("uploads/themes/$selectedProject->theme/attestation/$selectedProject->attestation_path") }}" type="application/pdf" width="100%" height="600px" >
+            @endif
+
         </div>
     </div>
 
     <div style="margin:100px 0px; background-color:white; padding:20px 20px; border-radius:10px;box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);">
         <h1 align="center" style="margin:20px 0px">Document Memoire</h1>
         <div>
+
+        @if($selectedProject->is_valid == 3)
+        <embed src="{{ asset("uploads/themes/$selectedProject->theme/memoire/resoumission/$selectedProject->memoire_path") }}" type="application/pdf" width="100%" height="600px" >
+        @else
         <embed src="{{ asset("uploads/themes/$selectedProject->theme/memoire/$selectedProject->memoire_path") }}" type="application/pdf" width="100%" height="600px" >
+        @endif
+
         </div>
     </div>
     <div>
