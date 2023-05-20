@@ -43,6 +43,7 @@ class VisiteurController extends Controller
 
 
         $projet = new Projets();
+
         $projet->theme = $request->projet_theme;
         $projet->abstract = $request->projet_abstract;
         $projet->members = $request->members;
@@ -69,6 +70,7 @@ class VisiteurController extends Controller
         $request->file('attestation_doc')->move(public_path("uploads/themes/{$projet->theme}/attestation"), $attestation_doc_name);
 
         if($projet->save()){
+            $request->flash("succes","Document enregistre avec success");
             return redirect()->route('visiteur.all');
 
         }
