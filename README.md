@@ -49,6 +49,8 @@
 8. for make seed => php artisan migrate:fresh --seed
 9. for specific seed => php artisan migrate:fresh --seed --seeder=UserSeeder
 10. for adding toast => composer require brian2694/laravel-toastr
+11. in order to run and download files online `php -d memory_limit=-1 composer require --ignore-platform-reqs`;
+
 
 
     
