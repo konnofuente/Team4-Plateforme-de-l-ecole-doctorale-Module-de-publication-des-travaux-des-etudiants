@@ -47,6 +47,19 @@ class VisiteurController extends Controller
     {
         return view('visiteur.search');
     }
+    public function searchResults(Request $request)
+    {
+        $searchTerm = $request->searchTerm;
+
+    $results = Projets::where(function ($query) use ($searchTerm) {
+        $query->where('theme', 'LIKE', '%' . $searchTerm . '%')
+              ->orWhere('abstract', 'LIKE', '%' . $searchTerm . '%')
+              ->orWhere('members', 'LIKE', '%' . $searchTerm . '%');
+        })->get();
+        return view('visiteur.search')
+            ->with('results',$results)
+            ->with('oldTerm',$searchTerm);
+    }
 
     /**
      * Store a newly created resource in storage.

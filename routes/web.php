@@ -329,6 +329,7 @@ Route::post('/soummetre_Finale', [VisiteurController::class, 'storeSecond'])->na
 Route::get('/download/{filePath}',[VisiteurController::class, 'download'])->name('visitor.downloadPdf');
 Route::get('/category/{category}', [VisiteurController::class, 'getCate'])->name('visiteur.all.category');
 Route::get('/search', [VisiteurController::class, 'search'])->name('visiteur.search');
+Route::post('/search', [VisiteurController::class, 'searchResults'])->name('visiteur.searchResults');
 // Route::get('/Inscription/TDs/{niv_id}/{fil_id}', [GestionInscriptionTDController::class, 'show'])->name('Inscription.show');
 // Route::get('/Inscription/Niveau', [GestionInscriptionTDController::class, 'show_niv'])->name('Inscription.show_niv');
 // Route::get('/Inscription/GroupeTd/{id}', [GestionInscriptionTDController::class, 'showTdUe'])->name('Inscription.showTdUe');
