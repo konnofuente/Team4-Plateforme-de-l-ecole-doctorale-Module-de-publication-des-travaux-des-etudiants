@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 @include('layouts.visitor.header')
-
+<?php
+    $domaines = config('global.constants.domaines');
+?>
 <!-- TTtetnetetdfdf -->
 <!--Main Navigation-->
 <header>
@@ -16,6 +18,18 @@
           <i class="fas fa-chart-area fa-fw me-3"></i><span>Soummetre Memoire</span>
         </a>
         <a href="{{route('visiteur.creerFinale')}}" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-lock fa-fw me-3"></i><span>Code Soumission</span></a>
+        <a href="{{route('visiteur.search')}}" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-search fa-fw me-3"></i><span>Rechercher</span></a>
+
+        <br>
+        <p>Different Categories :</p>
+        @foreach($domaines as $dom)
+        <a href="{{route('visiteur.all.category',$dom)}}" class="list-group-item list-group-item-action py-2 ripple">
+            <i class="bi bi-archive-fill me-3"></i>
+            <!-- <i class="fas fa-search fa-fw me-3"></i> -->
+            <span>{{$dom}}</span></a>
+        @endforeach
+
+
         <!-- <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chart-line fa-fw me-3"></i><span>Analytics</span></a>
         <a href="#" class="list-group-item list-group-item-action py-2 ripple">
           <i class="fas fa-chart-pie fa-fw me-3"></i><span>SEO</span>
@@ -48,8 +62,7 @@
       </a>
       <!-- Search form -->
       <form class="d-none d-md-flex input-group w-auto my-auto">
-        <input autocomplete="off" type="search" class="form-control rounded" placeholder='Search (ctrl + "/" to focus)' style="min-width: 225px" />
-        <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
+        <h4>PUBLICATION DES TRAVAUX ETUDIANTS</h4>
       </form>
 
       <!-- Right links -->

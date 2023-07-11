@@ -29,12 +29,11 @@
 
               <div class="tab-pane" id="references" role="tabpanel" aria-labelledby="deals-tab">
                 <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum sapiente iusto ullam eligendi numquam fuga error provident quaerat architecto placeat sed necessitatibus officiis reprehenderit, quam, ea nemo facere consequatur fugiat.</p>
-                <a href="#" class="btn btn-danger btn-sm">Get Deals</a>
               </div>
             </div>
         </div>
         <div class="card-footer">
-            <p>This is the footer</p>
+            <p>{{$selectedProject->created_at}}</p>
         </div>
         </div>
     <div style="margin:100px 0px; background-color:white; padding:20px 20px; border-radius:10px;box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);">

@@ -327,6 +327,8 @@ Route::post('/soummetre',[VisiteurController::class, 'store'])->name('visiteur.s
 Route::get('/soummetre_Finale', [VisiteurController::class, 'createSecond'])->name('visiteur.creerFinale');
 Route::post('/soummetre_Finale', [VisiteurController::class, 'storeSecond'])->name('visiteur.storeFinale');
 Route::get('/download/{filePath}',[VisiteurController::class, 'download'])->name('visitor.downloadPdf');
+Route::get('/category/{category}', [VisiteurController::class, 'getCate'])->name('visiteur.all.category');
+Route::get('/search', [VisiteurController::class, 'search'])->name('visiteur.search');
 // Route::get('/Inscription/TDs/{niv_id}/{fil_id}', [GestionInscriptionTDController::class, 'show'])->name('Inscription.show');
 // Route::get('/Inscription/Niveau', [GestionInscriptionTDController::class, 'show_niv'])->name('Inscription.show_niv');
 // Route::get('/Inscription/GroupeTd/{id}', [GestionInscriptionTDController::class, 'showTdUe'])->name('Inscription.showTdUe');

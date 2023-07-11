@@ -20,13 +20,15 @@ class CreateProjetsTable extends Migration
 
             $table->string('theme');
 
+            // $table->enum('domaine',["Informatique","Science","Literature","Arts","Autres"]);
+
             $table->longText('abstract');
 
             $table->longText('members');
 
             $table->string('chef_telephone');
 
-            $table->string('domaine');
+            $table->enum('domaine',["Technologie","Science","Literature","Arts","Autres"]);
 
             $table->string('chef_matricule');
 

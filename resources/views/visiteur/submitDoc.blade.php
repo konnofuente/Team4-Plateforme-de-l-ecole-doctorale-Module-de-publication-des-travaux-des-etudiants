@@ -1,4 +1,7 @@
 @extends('layouts.visitor.body')
+<?php
+    $domaines = config('global.constants.domaines');
+?>
 @section('content')
 <form method="POST" enctype="multipart/form-data">
     @csrf
@@ -16,14 +19,19 @@
   </div>
   <div class="row">
   <div class="form-group col-md-6">
-      <label for="projectMembers">Les membres du groupe (Separer par une vigule (,))</label>
+      <label for="projectMembers">Les membres du groupe</label>
       <textarea name="members" class="form-control" id="projectMembers" rows="3"
         placeholder="ex: Jhone Doe, Tristina Joe"
       ></textarea>
   </div>
   <div class="form-group col-md-6">
       <label for="domain">Domain/Type du projet</label>
-      <input type="text" class="form-control" placeholder="ex: Science / Technologie / Geography" id="domain" name="domaine">
+      <!-- <input type="text" class="form-control" placeholder="ex: Science / Technologie / Geography" id="domain" name="domaine"> -->
+      <select class="form-control" name="domaine" id="domaine">
+        @foreach($domaines as $dom)
+            <option value="{{$dom}}">{{$dom}}</option>
+        @endforeach
+      </select>
   </div>
   </div>
 

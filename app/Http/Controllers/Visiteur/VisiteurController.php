@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Visiteur;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Visiteur\Projets;
-
-
+use Illuminate\Support\Facades\Config;
 
 class VisiteurController extends Controller
 {
@@ -17,8 +16,22 @@ class VisiteurController extends Controller
      */
     public function index()
     {
+//       $config = Config::get("global.langs");
+    //    $config = config('global.constants.domaines');
+
+    //     return $config;
         $projets = Projets::where('is_valid',1)->get();
         return view('visiteur.viewAllDocs')->with('projects',$projets);
+    }
+    public function getCate($domaine)
+    {
+        if(in_array($domaine,config('global.constants.domaines'))){
+            $projets = Projets::where('is_valid',1)
+                          ->where('domaine',$domaine)->get();
+        return view('visiteur.viewAllByCategory')->with('projects',$projets);
+        }
+        return "The category does not exists";
+
     }
 
     /**
@@ -29,6 +42,10 @@ class VisiteurController extends Controller
     public function create()
     {
         return view('visiteur.submitDoc');
+    }
+    public function search()
+    {
+        return view('visiteur.search');
     }
 
     /**
