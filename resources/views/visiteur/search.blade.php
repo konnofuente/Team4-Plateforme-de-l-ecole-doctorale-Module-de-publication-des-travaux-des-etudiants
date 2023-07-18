@@ -46,7 +46,6 @@
 
                 <div class="tab-pane" id="authors{{$doc->id}}" role="tabpanel" aria-labelledby="history-tab">
                     <p class="card-text">{{$doc->members}}</p>
-                    <a href="#" class="card-link text-danger">Read more</a>
                 </div>
 
                 <div class="tab-pane" id="references{{$doc->id}}" role="tabpanel" aria-labelledby="deals-tab">
@@ -54,7 +53,7 @@
                 </div>
                 <div class="tab-pane" id="download{{$doc->id}}" role="tabpanel" aria-labelledby="deals-tab">
 
-                    <a href="{{route('visitor.downloadPdf',['filePath'=>$doc->memoire_path,'projId'=>$doc->id])}}" class="btn btn-danger btn-sm">Download PDF</a>
+                    <a href="{{route('visitor.downloadPdf',['filePath'=>$doc->memoire_path,'projId'=>$doc->id])}}" class="btn btn-danger btn-sm">Telecharger Le memoire</a>
                 </div>
                 </div>
             </div>

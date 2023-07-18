@@ -24,7 +24,6 @@
 
               <div class="tab-pane" id="authors" role="tabpanel" aria-labelledby="history-tab">
                 <p class="card-text">{{$selectedProject->members}}</p>
-                <a href="#" class="card-link text-danger">Read more</a>
               </div>
 
               <div class="tab-pane" id="references" role="tabpanel" aria-labelledby="deals-tab">
