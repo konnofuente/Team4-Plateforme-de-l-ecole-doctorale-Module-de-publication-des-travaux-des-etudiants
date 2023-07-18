@@ -54,7 +54,9 @@ class VisiteurController extends Controller
     $results = Projets::where(function ($query) use ($searchTerm) {
         $query->where('theme', 'LIKE', '%' . $searchTerm . '%')
               ->orWhere('abstract', 'LIKE', '%' . $searchTerm . '%')
-              ->orWhere('members', 'LIKE', '%' . $searchTerm . '%');
+              ->orWhere('members', 'LIKE', '%' . $searchTerm . '%')
+                ->where('is_valid',1)
+              ;
         })->get();
         return view('visiteur.search')
             ->with('results',$results)
