@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Visiteur;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Visiteur\Projets;
+
 use Illuminate\Support\Facades\Config;
 
 class VisiteurController extends Controller
@@ -117,9 +118,17 @@ class VisiteurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function download($filePath)
+    public function download($projId,$memName)
     {
-        //
+        $proj = Projets::where("id",$projId)->first();
+        $path = public_path()."/uploads/themes/{$proj->theme}/memoire/$memName";
+
+        $headers = array(
+            'Content-Type: application/pdf',
+          );
+
+          return response()->download($path, $memName, $headers);
+
     }
 
     /**

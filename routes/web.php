@@ -326,7 +326,7 @@ Route::get('/soummetre', [VisiteurController::class, 'create'])->name('visiteur.
 Route::post('/soummetre',[VisiteurController::class, 'store'])->name('visiteur.store');
 Route::get('/soummetre_Finale', [VisiteurController::class, 'createSecond'])->name('visiteur.creerFinale');
 Route::post('/soummetre_Finale', [VisiteurController::class, 'storeSecond'])->name('visiteur.storeFinale');
-Route::get('/download/{filePath}',[VisiteurController::class, 'download'])->name('visitor.downloadPdf');
+Route::get('/download/{projId}/{filePath}',[VisiteurController::class, 'download'])->name('visitor.downloadPdf');
 Route::get('/category/{category}', [VisiteurController::class, 'getCate'])->name('visiteur.all.category');
 Route::get('/search', [VisiteurController::class, 'search'])->name('visiteur.search');
 Route::post('/search', [VisiteurController::class, 'searchResults'])->name('visiteur.searchResults');

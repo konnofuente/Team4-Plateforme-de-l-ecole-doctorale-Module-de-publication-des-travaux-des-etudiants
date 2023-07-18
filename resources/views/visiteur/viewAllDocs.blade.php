@@ -37,7 +37,7 @@
               </div>
               <div class="tab-pane" id="download{{$doc->id}}" role="tabpanel" aria-labelledby="deals-tab">
 
-                <a href="{{route('visitor.downloadPdf',['filePath'=>$doc->memoire_path])}}" class="btn btn-danger btn-sm">Download PDF</a>
+                <a href="{{route('visitor.downloadPdf',['filePath'=>$doc->memoire_path,'projId'=>$doc->id])}}" class="btn btn-danger btn-sm">Download PDF</a>
               </div>
             </div>
         </div>
