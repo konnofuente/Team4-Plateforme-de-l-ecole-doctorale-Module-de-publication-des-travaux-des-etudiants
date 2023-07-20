@@ -44,7 +44,7 @@ class VisiteurController extends Controller
     {
         return view('visiteur.submitDoc');
     }
-    
+
     public function search()
     {
         return view('visiteur.search');

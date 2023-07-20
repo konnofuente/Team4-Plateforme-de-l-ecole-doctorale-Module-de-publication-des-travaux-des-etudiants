@@ -52,9 +52,9 @@
         <div>
 
         @if($selectedProject->is_valid == 3)
-        <embed src="{{ asset("uploads/themes/$selectedProject->theme/memoire/resoumission/$selectedProject->memoire_path") }}" type="application/pdf" width="100%" height="600px" >
+            <embed src="{{ asset("uploads/themes/$selectedProject->theme/memoire/resoumission/$selectedProject->memoire_path") }}" type="application/pdf" width="100%" height="600px" >
         @else
-        <embed src="{{ asset("uploads/themes/$selectedProject->theme/memoire/$selectedProject->memoire_path") }}" type="application/pdf" width="100%" height="600px" >
+            <embed src="{{ asset("uploads/themes/$selectedProject->theme/memoire/$selectedProject->memoire_path") }}" type="application/pdf" width="100%" height="600px" >
         @endif
 
         </div>
