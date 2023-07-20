@@ -15,7 +15,7 @@
           <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Memoires Recent</span>
         </a>
         <a href="{{route('visiteur.creer')}}" class="list-group-item list-group-item-action py-2 ripple ">
-          <i class="fas fa-chart-area fa-fw me-3"></i><span>Soummetre Memoire</span>
+          <i class="fas fa-chart-area fa-fw me-3"></i><span>Soummision</span>
         </a>
         <a href="{{route('visiteur.creerFinale')}}" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-lock fa-fw me-3"></i><span>Code Soumission</span></a>
         <a href="{{route('visiteur.search')}}" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-search fa-fw me-3"></i><span>Rechercher</span></a>

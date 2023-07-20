@@ -28,7 +28,7 @@ class CreateProjetsTable extends Migration
 
             $table->string('chef_telephone');
 
-            $table->enum('domaine',["Technologie","Science","Literature","Arts","Autres"]);
+            $table->enum('domaine',["Technologie","Science","Literature","Arts","Autres","Communication"]);
 
             $table->string('chef_matricule');
 

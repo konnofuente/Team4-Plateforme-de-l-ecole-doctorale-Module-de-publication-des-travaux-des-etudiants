@@ -44,6 +44,32 @@ use App\Http\Controllers\Visiteur\VisiteurController;
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create']);
 
+Route::get('/', [VisiteurController::class, 'index'])->name('visiteur.all');
+Route::get('/soummetre', [VisiteurController::class, 'create'])->name('visiteur.creer');
+Route::post('/soummetre',[VisiteurController::class, 'store'])->name('visiteur.store');
+Route::get('/soummetre_Finale', [VisiteurController::class, 'createSecond'])->name('visiteur.creerFinale');
+Route::post('/soummetre_Finale', [VisiteurController::class, 'storeSecond'])->name('visiteur.storeFinale');
+Route::get('/download/{projId}/{filePath}',[VisiteurController::class, 'download'])->name('visitor.downloadPdf');
+Route::get('/category/{category}', [VisiteurController::class, 'getCate'])->name('visiteur.all.category');
+Route::get('/search', [VisiteurController::class, 'search'])->name('visiteur.search');
+Route::post('/search', [VisiteurController::class, 'searchResults'])->name('visiteur.searchResults');
+// Route::get('/Inscription/TDs/{niv_id}/{fil_id}', [GestionInscriptionTDController::class, 'show'])->name('Inscription.show');
+// Route::get('/Inscription/Niveau', [GestionInscriptionTDController::class, 'show_niv'])->name('Inscription.show_niv');
+// Route::get('/Inscription/GroupeTd/{id}', [GestionInscriptionTDController::class, 'showTdUe'])->name('Inscription.showTdUe');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
@@ -321,15 +347,6 @@ Route::get('Inscription/form/{id}', [GestionInscriptionTDController::class, 'cre
 Route::post('Inscription/form/{id}', [GestionInscriptionTDController::class, 'store'])->name('Inscription.form.store');
 
 
-Route::get('/', [VisiteurController::class, 'index'])->name('visiteur.all');
-Route::get('/soummetre', [VisiteurController::class, 'create'])->name('visiteur.creer');
-Route::post('/soummetre',[VisiteurController::class, 'store'])->name('visiteur.store');
-Route::get('/soummetre_Finale', [VisiteurController::class, 'createSecond'])->name('visiteur.creerFinale');
-Route::post('/soummetre_Finale', [VisiteurController::class, 'storeSecond'])->name('visiteur.storeFinale');
-Route::get('/download/{projId}/{filePath}',[VisiteurController::class, 'download'])->name('visitor.downloadPdf');
-Route::get('/category/{category}', [VisiteurController::class, 'getCate'])->name('visiteur.all.category');
-Route::get('/search', [VisiteurController::class, 'search'])->name('visiteur.search');
-Route::post('/search', [VisiteurController::class, 'searchResults'])->name('visiteur.searchResults');
-// Route::get('/Inscription/TDs/{niv_id}/{fil_id}', [GestionInscriptionTDController::class, 'show'])->name('Inscription.show');
-// Route::get('/Inscription/Niveau', [GestionInscriptionTDController::class, 'show_niv'])->name('Inscription.show_niv');
-// Route::get('/Inscription/GroupeTd/{id}', [GestionInscriptionTDController::class, 'showTdUe'])->name('Inscription.showTdUe');
+
+
+
