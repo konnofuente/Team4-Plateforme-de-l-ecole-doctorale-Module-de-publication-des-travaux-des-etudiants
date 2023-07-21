@@ -57,6 +57,22 @@ class VisiteurController extends Controller
     {
         return view('visiteur.memoireText')->with('pdfText', '');
     }
+
+    public function aiSide(Request $request)
+    {
+    $projId = $request->input('projId');
+
+    $selectedProject = Projets::find($projId);
+
+    if (!$selectedProject) {
+        return view('visiteur.aiSide')->with('selectedProject', null);
+    }
+
+    // return view('visiteur.aiSide')->with('selectedProject', $selectedProject);
+    return view('visiteur.aiSide');
+    
+}
+
     
 
 
@@ -181,6 +197,76 @@ class VisiteurController extends Controller
 //     return view('visiteur.memoireText')->with('pdfText', $pdfText);
 // }
 
+public function extractTextById($projId)
+{
+    $selectedProject = Projets::find($projId);
+
+    if (!$selectedProject) {
+        return view('visiteur.aiSide')->with('projectInfo', null)->with('error', 'Project not found');
+    }
+
+    $memoire_path = str_replace(['{', '}'], '', $selectedProject->memoire_path);
+    $theme = str_replace(['{', '}'], '', $selectedProject->theme);
+    $memoirePath = public_path("uploads\\themes\\{$theme}\\memoire\\{$memoire_path}");
+
+    // dd($memoirePath);
+
+    // if (!Storage::exists($memoirePath)) {
+    //     return view('visiteur.aiSide')->with('projectInfo', null)->with('error', 'Memoire file not found');
+    // }
+
+    $parser = new Parser();
+    $pdf = $parser->parseFile($memoirePath);
+
+    // Extract text from each page of the PDF
+    $pdfText = '';
+    foreach ($pdf->getPages() as $page) {
+        $pdfText .= $page->getText();
+    }
+
+    return $pdfText;
+}
+
+public function aiAnalysis(Request $request)
+{
+    $projId = $request->input('projId');
+    $resumeLang = $request->input('resumeLang');
+    $prompt = $request->input('prompt');
+
+    // You can now use the provided $projId, $resumeLang, and $prompt for AI analysis as needed.
+    // Implement your AI analysis logic here, and return the results as required.
+
+    // For demonstration purposes, let's just return a message indicating the analysis is in progress.
+    $analysisResult = "AI analysis is in progress for project with ID: $projId, using language: $resumeLang, and prompt: $prompt";
+
+    // return view('visiteur.aiSide')->with('projectInfo', $projectInfo)->with('analysisResult', $analysisResult);
+}
+
+public function searchMemoire(Request $request)
+{
+    $projId = $request->input('projId');
+
+    // Retrieve project information based on the project ID
+    $selectedProject = Projets::find($projId);
+
+    if (!$selectedProject) {
+        return view('visiteur.aiSide')->with('error', 'Project not found');
+    }
+
+    
+    // Extract relevant information to display on the AI side
+    $projectInfo = [
+        'theme' => $selectedProject->theme,
+        'abstract' => $selectedProject->abstract,
+        'language' => $selectedProject->language,
+        // Add other relevant project information here
+    ];
+    
+    $pdfText = $this->extractTextById($projId);
+
+    return view('visiteur.aiSide')->with('projectInfo', $projectInfo)->with('pdfText', $pdfText);
+    // return view('visiteur.aiSide')->with('projectInfo', $projectInfo);
+}
 
 
 
@@ -194,15 +280,8 @@ public function extractMemoireText(Request $request)
         return view('visiteur.memoireText')->with('pdfText', 'Memoire not found');
     }
 
-
-
   // Remove the braces {} from the theme and memoire paths
-  
-  
-  //   $memoirePath = $selectedProject->is_valid == 1
-  //   ? public_path("uploads\\themes\\{$theme}\\memoire\\{$memoire_path}")
-  //   : public_path("uploads\\themes\\{$theme}\\memoire\\{$memoire_path}");
-  
+
   $memoire_path = str_replace(['{', '}'], '', $selectedProject->memoire_path);
   $theme = str_replace(['{', '}'], '', $selectedProject->theme);
   $memoirePath =  public_path("uploads\\themes\\{$theme}\\memoire\\{$memoire_path}");
@@ -215,8 +294,6 @@ public function extractMemoireText(Request $request)
     // }
 
     $parser = new Parser();
-    // $pdf = $parser->parseFile(storage_path("app/$memoirePath"));
-    // $pdf = $parser->parseFile(public_path("$memoirePath"));
     $pdf = $parser->parseFile($memoirePath);
 
     // Extract text from each page of the PDF

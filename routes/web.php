@@ -57,6 +57,10 @@ Route::post('/search', [VisiteurController::class, 'searchResults'])->name('visi
 // New route for extracting text from the PDF 
 Route::get('/extractText', [VisiteurController::class, 'extractText'])->name('visiteur.extractText');
 Route::post('/extract-memoire-text', [VisiteurController::class, 'extractMemoireText'])->name('visiteur.extractMemoireText');
+Route::get('/ai-side', [VisiteurController::class, 'aiSide'])->name('visiteur.aiSide');
+Route::post('/searchMemoire', [VisiteurController::class, 'searchMemoire'])->name('visiteur.searchMemoire');
+Route::post('/ai-analysis', [VisiteurController::class, 'aiAnalysis'])->name('visiteur.aiAnalysis');
+
 
 
 // Route::get('/extractText', [VisiteurController::class, 'extractText'])->name('visiteur.extractText');
