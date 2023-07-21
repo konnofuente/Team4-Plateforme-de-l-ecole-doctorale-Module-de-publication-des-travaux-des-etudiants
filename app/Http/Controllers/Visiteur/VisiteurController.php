@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Visiteur;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Visiteur\Projets;
+use Smalot\PdfParser\Parser;
 
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Storage;
 
 class VisiteurController extends Controller
+
 {
     /**
      * Display a listing of the resource.
@@ -49,6 +52,14 @@ class VisiteurController extends Controller
     {
         return view('visiteur.search');
     }
+
+    public function extractText()
+    {
+        return view('visiteur.memoireText')->with('pdfText', '');
+    }
+    
+
+
     public function searchResults(Request $request)
     {
         $searchTerm = $request->searchTerm;
@@ -131,6 +142,99 @@ class VisiteurController extends Controller
           return response()->download($path, $memName, $headers);
 
     }
+
+
+    /**
+ * Extract text from the PDF memoire of a specific thesis.
+ *
+ * @param  int  $projId
+ * @return \Illuminate\Http\Response
+ */
+// public function extractMemoireText($projId)
+// {
+//     $selectedProject = Projets::find($projId);
+
+//     if (!$selectedProject) {
+//         abort(404); // Project not found
+//     }
+
+//     $memoirePath = $selectedProject->is_valid == 3
+//         ? "uploads/themes/{$selectedProject->theme}/memoire/resoumission/{$selectedProject->memoire_path}"
+//         : "uploads/themes/{$selectedProject->theme}/memoire/{$selectedProject->memoire_path}";
+
+//     if (!Storage::exists($memoirePath)) {
+//         abort(404); // PDF file not found
+//     }
+
+//     $parser = new Parser();
+//     $pdf = $parser->parseFile(storage_path("app/$memoirePath"));
+
+//     // Extract text from each page of the PDF
+//     $pdfText = '';
+//     foreach ($pdf->getPages() as $page) {
+//         $pdfText .= $page->getText();
+//     }
+
+//     // Now you have the extracted text from the PDF memoire.
+//     // You can use it as needed, for example, display it in a view or process it further.
+
+//     return view('visiteur.memoireText')->with('pdfText', $pdfText);
+// }
+
+
+
+
+public function extractMemoireText(Request $request)
+{
+    $projId = $request->input('projId');
+
+    $selectedProject = Projets::find($projId);
+
+    if (!$selectedProject) {
+        return view('visiteur.memoireText')->with('pdfText', 'Memoire not found');
+    }
+
+
+
+  // Remove the braces {} from the theme and memoire paths
+  
+  
+  //   $memoirePath = $selectedProject->is_valid == 1
+  //   ? public_path("uploads\\themes\\{$theme}\\memoire\\{$memoire_path}")
+  //   : public_path("uploads\\themes\\{$theme}\\memoire\\{$memoire_path}");
+  
+  $memoire_path = str_replace(['{', '}'], '', $selectedProject->memoire_path);
+  $theme = str_replace(['{', '}'], '', $selectedProject->theme);
+  $memoirePath =  public_path("uploads\\themes\\{$theme}\\memoire\\{$memoire_path}");
+
+  // For debugging purposes, let's display the generated file path
+//   dd($memoirePath);
+
+    // if (!Storage::exists($memoirePath)) {
+    //     return view('visiteur.memoireText')->with('pdfText', 'Memoire file not found');
+    // }
+
+    $parser = new Parser();
+    // $pdf = $parser->parseFile(storage_path("app/$memoirePath"));
+    // $pdf = $parser->parseFile(public_path("$memoirePath"));
+    $pdf = $parser->parseFile($memoirePath);
+
+    // Extract text from each page of the PDF
+    $pdfText = '';
+    foreach ($pdf->getPages() as $page) {
+        $pdfText .= $page->getText();
+    }
+
+    // Now you have the extracted text from the PDF memoire.
+    // You can use it as needed, for example, display it in a view or process it further.
+
+    return view('visiteur.memoireText')->with('pdfText', $pdfText);
+}
+
+
+
+
+
 
     /**
      * Show the form for editing the specified resource.

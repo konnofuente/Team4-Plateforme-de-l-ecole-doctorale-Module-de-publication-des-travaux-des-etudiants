@@ -53,6 +53,15 @@ Route::get('/download/{projId}/{filePath}',[VisiteurController::class, 'download
 Route::get('/category/{category}', [VisiteurController::class, 'getCate'])->name('visiteur.all.category');
 Route::get('/search', [VisiteurController::class, 'search'])->name('visiteur.search');
 Route::post('/search', [VisiteurController::class, 'searchResults'])->name('visiteur.searchResults');
+
+// New route for extracting text from the PDF 
+Route::get('/extractText', [VisiteurController::class, 'extractText'])->name('visiteur.extractText');
+Route::post('/extract-memoire-text', [VisiteurController::class, 'extractMemoireText'])->name('visiteur.extractMemoireText');
+
+
+// Route::get('/extractText', [VisiteurController::class, 'extractText'])->name('visiteur.extractText');
+// Route::get('/extract-memoire-text/{projId}', [VisiteurController::class, 'extractMemoireText'])->name('visiteur.extractMemoireText');
+
 // Route::get('/Inscription/TDs/{niv_id}/{fil_id}', [GestionInscriptionTDController::class, 'show'])->name('Inscription.show');
 // Route::get('/Inscription/Niveau', [GestionInscriptionTDController::class, 'show_niv'])->name('Inscription.show_niv');
 // Route::get('/Inscription/GroupeTd/{id}', [GestionInscriptionTDController::class, 'showTdUe'])->name('Inscription.showTdUe');
