@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Visiteur\Projets;
 use Smalot\PdfParser\Parser;
 use Illuminate\Support\Str;
+use GuzzleHttp\Client;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
@@ -230,20 +231,49 @@ public function extractTextById($projId)
     return $pdfText;
 }
 
+// Controller
+
+
 public function aiAnalysis(Request $request)
 {
-    $projId = $request->input('projId');
-    $resumeLang = $request->input('resumeLang');
     $prompt = $request->input('prompt');
 
-    // You can now use the provided $projId, $resumeLang, and $prompt for AI analysis as needed.
-    // Implement your AI analysis logic here, and return the results as required.
+    // Set up Guzzle HTTP client
+    $client = new Client();
 
-    // For demonstration purposes, let's just return a message indicating the analysis is in progress.
-    $analysisResult = "AI analysis is in progress for project with ID: $projId, using language: $resumeLang, and prompt: $prompt";
+    // Replace 'YOUR_API_KEY' with your actual GPT-3 API key
+    $apiKey = 'YOUR_API_KEY';
 
-    // return view('visiteur.aiSide')->with('projectInfo', $projectInfo)->with('analysisResult', $analysisResult);
+    // Prepare the API request data
+    $requestData = [
+        'prompt' => $prompt,
+        // Additional options and parameters as needed for the GPT-3 API
+    ];
+
+    try {
+        // Make a POST request to the GPT-3 API
+        $response = $client->post('https://api.openai.com/v1/engines/davinci-codex/completions', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $apiKey,
+                'Content-Type' => 'application/json',
+            ],
+            'json' => $requestData,
+        ]);
+
+        // Process the API response
+        $responseData = json_decode($response->getBody(), true);
+
+        // Get the generated text from the API response
+        $generatedText = $responseData['choices'][0]['text'];
+
+        // Update the AI Side view with the generatedText
+        return view('visiteur.aiSide')->with('projectInfo', $projectInfo)->with('pdfText', $pdfText)->with('summary', $summary)->with('generatedText', $generatedText);
+    } catch (\Exception $e) {
+        // Handle API request error
+        return view('visiteur.aiSide')->with('error', 'An error occurred while processing the request.');
+    }
 }
+
 
 public function aiSearchMemoire(Request $request)
 {
