@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Visiteur\Projets;
 use Smalot\PdfParser\Parser;
+use Illuminate\Support\Str;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
@@ -160,42 +161,44 @@ class VisiteurController extends Controller
     }
 
 
-    /**
- * Extract text from the PDF memoire of a specific thesis.
- *
- * @param  int  $projId
- * @return \Illuminate\Http\Response
- */
-// public function extractMemoireText($projId)
-// {
-//     $selectedProject = Projets::find($projId);
 
-//     if (!$selectedProject) {
-//         abort(404); // Project not found
-//     }
 
-//     $memoirePath = $selectedProject->is_valid == 3
-//         ? "uploads/themes/{$selectedProject->theme}/memoire/resoumission/{$selectedProject->memoire_path}"
-//         : "uploads/themes/{$selectedProject->theme}/memoire/{$selectedProject->memoire_path}";
 
-//     if (!Storage::exists($memoirePath)) {
-//         abort(404); // PDF file not found
-//     }
+    // ...
+    
 
-//     $parser = new Parser();
-//     $pdf = $parser->parseFile(storage_path("app/$memoirePath"));
-
-//     // Extract text from each page of the PDF
-//     $pdfText = '';
-//     foreach ($pdf->getPages() as $page) {
-//         $pdfText .= $page->getText();
-//     }
-
-//     // Now you have the extracted text from the PDF memoire.
-//     // You can use it as needed, for example, display it in a view or process it further.
-
-//     return view('visiteur.memoireText')->with('pdfText', $pdfText);
-// }
+    
+    public function extractSummaryAlgo($text, $maxSentences = 3)
+    {
+        // Tokenize the text into sentences
+        $sentences = preg_split('/[.!?]/', $text, -1, PREG_SPLIT_NO_EMPTY);
+    
+        // Calculate the length of each sentence and store it in an associative array
+        $sentenceLengths = array();
+        foreach ($sentences as $sentence) {
+            $sentenceLengths[$sentence] = strlen($sentence);
+        }
+    
+        // Sort the sentences based on their length (from shortest to longest)
+        asort($sentenceLengths);
+    
+        // Select the $maxSentences shortest sentences to form the summary
+        $summarySentences = array_slice(array_keys($sentenceLengths), 0, $maxSentences);
+    
+        // Concatenate the summary sentences into a single string
+        $summary = implode(' ', $summarySentences);
+    
+        // If the summary is too short, add more sentences to it
+        while (Str::wordCount($summary) < 50 && $maxSentences < count($sentences)) {
+            $maxSentences++;
+            $summarySentences = array_slice(array_keys($sentenceLengths), 0, $maxSentences);
+            $summary = implode(' ', $summarySentences);
+        }
+    
+        return $summary;
+    }
+    
+    
 
 public function extractTextById($projId)
 {
@@ -242,7 +245,7 @@ public function aiAnalysis(Request $request)
     // return view('visiteur.aiSide')->with('projectInfo', $projectInfo)->with('analysisResult', $analysisResult);
 }
 
-public function searchMemoire(Request $request)
+public function aiSearchMemoire(Request $request)
 {
     $projId = $request->input('projId');
 
@@ -264,7 +267,9 @@ public function searchMemoire(Request $request)
     
     $pdfText = $this->extractTextById($projId);
 
-    return view('visiteur.aiSide')->with('projectInfo', $projectInfo)->with('pdfText', $pdfText);
+    $summary = $this->extractSummaryAlgo($pdfText);
+
+    return view('visiteur.aiSide')->with('projectInfo', $projectInfo)->with('pdfText', $pdfText)->with('summary', $summary);
     // return view('visiteur.aiSide')->with('projectInfo', $projectInfo);
 }
 

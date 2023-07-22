@@ -58,7 +58,7 @@ Route::post('/search', [VisiteurController::class, 'searchResults'])->name('visi
 Route::get('/extractText', [VisiteurController::class, 'extractText'])->name('visiteur.extractText');
 Route::post('/extract-memoire-text', [VisiteurController::class, 'extractMemoireText'])->name('visiteur.extractMemoireText');
 Route::get('/ai-side', [VisiteurController::class, 'aiSide'])->name('visiteur.aiSide');
-Route::post('/searchMemoire', [VisiteurController::class, 'searchMemoire'])->name('visiteur.searchMemoire');
+Route::post('/aiSearchMemoire', [VisiteurController::class, 'aiSearchMemoire'])->name('visiteur.aiSearchMemoire');
 Route::post('/ai-analysis', [VisiteurController::class, 'aiAnalysis'])->name('visiteur.aiAnalysis');
 
 

@@ -4,7 +4,7 @@
 <div>
     <h1 class="text-primary" align="center">AI Side - AI Text Analysis</h1>
 
-    <form method="POST" action="{{ route('visiteur.searchMemoire') }}">
+    <form method="POST" action="{{ route('visiteur.aiSearchMemoire') }}">
         @csrf
         <div class="form-row">
             <div class="form-group">
@@ -32,6 +32,10 @@
             <div class="mt-4">
                 <h2>Extracted Text from Memoire</h2>
                 <pre>{!! $pdfText !!}</pre>
+            </div>
+            <div class="mt-4">
+                <h2>summary</h2>
+                <pre>{!! $summary !!}</pre>
             </div>
             {{-- <p><strong>Extracted Text:</strong>{{  $pdfText }}</p> --}}
             <!-- Display other project information as needed -->
@@ -88,7 +92,7 @@
 <div>
     <h1 class="text-primary" align="center">AI Side - AI Text Analysis</h1>
 
-    <form method="POST" action="{{ route('visiteur.searchMemoire') }}">
+    <form method="POST" action="{{ route('visiteur.aiSearchMemoire') }}">
         @csrf
         <div class="form-row">
             <div class="form-group">
