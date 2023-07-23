@@ -406,6 +406,8 @@ public function aiSearchMemoire(Request $request)
         'theme' => $selectedProject->theme,
         'abstract' => $selectedProject->abstract,
         'language' => $selectedProject->language,
+        'author' => $selectedProject->members,
+        'contact' => $selectedProject->chef_email,
         // Add other relevant project information here
     ];
     

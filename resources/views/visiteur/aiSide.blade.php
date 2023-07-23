@@ -61,14 +61,16 @@
         <div class="project-info mt-3">
             <h2>Project Information</h2>
             <p><strong>Theme:</strong> {{ $projectInfo['theme'] }}</p>
+            <p><strong>Authors:</strong> {{ $projectInfo['author'] }}</p>
+            <p><strong>Contact:</strong> {{ $projectInfo['contact'] }}</p>
             <p><strong>Abstract:</strong> {{ $projectInfo['abstract'] }}</p>
             <p><strong>Language:</strong> {{ $projectInfo['language'] }}</p>
             <!-- Display other project information as needed -->
         </div>
 
-        <h2>AI Analysis</h2>
+        {{-- <h2>AI Analysis</h2> --}}
         <div id="chatbox" class="mt-4">
-            <h2>Chat with AI</h2>
+            <h2 style="align-item:center" >COF AI</h2>
             <div id="chatMessages"></div>
             <div id="loadingSpinner" class="d-none">
                 <div class="spinner-border text-primary" role="status">
@@ -122,15 +124,31 @@
 
         function sendMessageToAI(prompt, projId) {
             // Use AJAX to send user input to the Laravel backend
-            prompt = " " + userInput.value + " base on the following information I will provide you: " + projectInfo.abstract;
+            prompt =  userInput.value ;
 
             // Set up the GPT-3 API parameters
             const gpt3ApiUrl = 'https://api.openai.com/v1/chat/completions';
             const model = 'gpt-3.5-turbo';
             const role = 'user';
-            const apiKey = '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'; // Replace with your actual GPT-3 API key
+            const apiKey = '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'; // Replace with your actual GPT-3 API key
 
             // Create the message object
+    //         const conversation = [
+    //             { role: "system", content: `your discussin with a user Base on the following information I will provide you: ${projectInfo.abstract}` },
+    //             // { role: "system", content: `You are discussing the thesis with ID ${projId}.` },
+    //             { role: "user", content: prompt }
+    // ];
+
+    const conversation = [
+    { role: "system", content: `You are having a discussion about a research thesis on the topic: "${projectInfo.theme}".` },
+    { role: "system", content: `The abstract of the thesis is as follows: "${projectInfo.abstract}".` },
+    { role: "system", content: `The language of the thesis is: ${projectInfo.language}.` },
+    { role: "system", content: `The author(s) of the thesis are: ${projectInfo.author}.` },
+    { role: "system", content: `You can contact the researcher(s) at: ${projectInfo.contact}.` },
+    { role: "user", content: prompt }
+];
+
+
             const messages = [{
                 role: role,
                 content: prompt
@@ -145,7 +163,7 @@
                 },
                 body: JSON.stringify({
                     model: model,
-                    messages: messages
+                    messages: conversation
                 }),
             })
             .then((response) => response.json())
@@ -169,20 +187,12 @@
         // Event listener for the Send button (in the chatbox)
         sendBtn.addEventListener("click", function() {
             const prompt = userInput.value;
+            console.log("print");
             appendMessage(prompt, true);
+            showLoadingSpinner(); // Show the loading spinner
             sendMessageToAI(prompt, projectInfo.projId);
             userInput.value = "";
         });
-
-
-        sendBtn.addEventListener("click", function() {
-        const prompt = userInput.value;
-        appendMessage(prompt, true);
-        showLoadingSpinner(); // Show the loading spinner
-        sendMessageToAI(prompt, projectInfo.projId);
-        userInput.value = "";
-    });
-
     });
 </script>
 @endsection
