@@ -1,3 +1,32 @@
+<style>
+    /* Add some basic styling to the chatbox messages */
+    #chatMessages {
+        margin-top: 10px;
+        overflow-y: auto;
+        max-height: 500px;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    .message {
+        margin-bottom: 10px;
+        padding: 5px 10px;
+        border-radius: 8px;
+        width: fit-content;
+        max-width: 70%;
+    }
+
+    .user {
+        background-color: #e6f7ff; /* Light blue for user messages */
+        float: left;
+    }
+
+    .ai {
+        background-color: #f0f0f0; /* Light gray for AI messages */
+        float: right;
+    }
+</style>
+
 @extends('layouts.visitor.body')
 @section('content')
 
@@ -24,6 +53,11 @@
     @endif
 
     @if (isset($projectInfo))
+        <script>
+            // Pass the projectInfo to JavaScript variable
+            const projectInfo = @json($projectInfo);
+        </script>
+
         <div class="project-info mt-3">
             <h2>Project Information</h2>
             <p><strong>Theme:</strong> {{ $projectInfo['theme'] }}</p>
@@ -32,39 +66,8 @@
             <!-- Display other project information as needed -->
         </div>
 
-        <h2>Extracted Text from Memoire</h2>
-        <pre>{!! $pdfText !!}</pre>
-
-        <h2>Summary</h2>
-        <pre>{!! $summary !!}</pre>
-
         <h2>AI Analysis</h2>
-        <div>
-            <form id="chatForm" method="POST" action="{{ route('visiteur.aiAnalysis') }}">
-                @csrf
-                {{-- <input type="hidden" name="projId" value="{{ $projectInfo['id'] }}"> --}}
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="resumeLang">Select Language:</label>
-                        <select class="form-control" id="resumeLang" name="resumeLang">
-                            <option value="fr">French</option>
-                            <option value="en">English</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row" >
-                    {{-- <div class="form-group">
-                        <label for="prompt">Enter Prompt:</label>
-                        <textarea class="form-control" id="prompt" name="prompt" rows="4" placeholder="Enter your prompt here"></textarea>
-                    </div>
-                    <div class="form-group" style="padding:20px 0px;"> --}}
-                        <button type="button" id="analyzeBtn" class="btn btn-primary" style="margin: 20px">Analyze</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <div id="chatbox" class="mt-4" style="display:none;">
+        <div id="chatbox" class="mt-4">
             <h2>Chat with AI</h2>
             <div id="chatMessages"></div>
             <div class="form-row">
@@ -85,9 +88,7 @@
         const chatbox = document.getElementById("chatbox");
         const chatMessages = document.getElementById("chatMessages");
         const userInput = document.getElementById("userInput");
-        const analyzeBtn = document.getElementById("analyzeBtn");
         const sendBtn = document.getElementById("sendBtn");
-        const chatForm = document.getElementById("chatForm");
 
         // Function to append a message to the chatbox
         function appendMessage(text, isUser = false) {
@@ -95,60 +96,64 @@
             messageDiv.classList.add("message");
             if (isUser) {
                 messageDiv.classList.add("user");
+            } else {
+                messageDiv.classList.add("ai");
             }
             messageDiv.textContent = text;
             chatMessages.appendChild(messageDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Function to send user input to the AI
-        function sendMessageToAI(prompt) {
+        function sendMessageToAI(prompt, projId) {
             // Use AJAX to send user input to the Laravel backend
-            fetch(chatForm.action, {
+            prompt = " " + userInput.value + " base on the following information I will provide you: " + projectInfo.abstract;
+
+            // Set up the GPT-3 API parameters
+            const gpt3ApiUrl = 'https://api.openai.com/v1/chat/completions';
+            const model = 'gpt-3.5-turbo';
+            const role = 'user';
+            const apiKey = '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'; // Replace with your actual GPT-3 API key
+
+            // Create the message object
+            const messages = [{
+                role: role,
+                content: prompt
+            }];
+
+            // Make a POST request to the GPT-3 API
+            fetch(gpt3ApiUrl, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-CSRF-Token": chatForm._token.value,
+                    "Authorization": `Bearer ${apiKey}`
                 },
                 body: JSON.stringify({
-                    projId: chatForm.projId.value,
-                    prompt: prompt,
-                    resumeLang: chatForm.resumeLang.value,
+                    model: model,
+                    messages: messages
                 }),
             })
             .then((response) => response.json())
             .then((data) => {
+                // Get the generated text from the API response
+                const generatedText = data.choices[0].message.content;
                 // Display AI response in the chatbox
-                appendMessage(data.response, false);
+                appendMessage(generatedText, false);
             })
             .catch((error) => {
-                console.error("Error sending message:", error);
+                console.log("Error of Json :", error);
             });
         }
 
-        // Event listener for the Analyze button
-        analyzeBtn.addEventListener("click", function() {
-            const prompt = userInput.value;
-            appendMessage(prompt, true);
-            sendMessageToAI(prompt);
-            userInput.value = "";
-        });
+        // Show the chatbox when a thesis is found
+        chatbox.style.display = "block";
 
         // Event listener for the Send button (in the chatbox)
         sendBtn.addEventListener("click", function() {
             const prompt = userInput.value;
             appendMessage(prompt, true);
-            sendMessageToAI(prompt);
+            sendMessageToAI(prompt, projectInfo.projId);
             userInput.value = "";
         });
-
-        // Show the chatbox when the Analyze button is clicked
-        analyzeBtn.addEventListener("click", function() {
-            chatbox.style.display = "block";
-        });
-
-        // Hide the chatbox initially
-        chatbox.style.display = "none";
     });
 </script>
 @endsection
