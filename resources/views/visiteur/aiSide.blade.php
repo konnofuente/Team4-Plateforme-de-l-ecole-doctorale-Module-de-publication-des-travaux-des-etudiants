@@ -3,7 +3,7 @@
     #chatMessages {
         margin-top: 10px;
         overflow-y: auto;
-        max-height: 500px;
+        max-height: 300px;
         border: 1px solid #ccc;
         padding: 10px;
     }
@@ -70,6 +70,11 @@
         <div id="chatbox" class="mt-4">
             <h2>Chat with AI</h2>
             <div id="chatMessages"></div>
+            <div id="loadingSpinner" class="d-none">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
             <div class="form-row">
                 <div class="form-group">
                     <label for="userInput">Your Message:</label>
@@ -91,6 +96,17 @@
         const sendBtn = document.getElementById("sendBtn");
 
         // Function to append a message to the chatbox
+
+        const loadingSpinner = document.getElementById("loadingSpinner");
+
+        function showLoadingSpinner() {
+            loadingSpinner.classList.remove("d-none");
+        }
+
+        function hideLoadingSpinner() {
+            loadingSpinner.classList.add("d-none");
+        }
+
         function appendMessage(text, isUser = false) {
             const messageDiv = document.createElement("div");
             messageDiv.classList.add("message");
@@ -112,7 +128,7 @@
             const gpt3ApiUrl = 'https://api.openai.com/v1/chat/completions';
             const model = 'gpt-3.5-turbo';
             const role = 'user';
-            const apiKey = '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'; // Replace with your actual GPT-3 API key
+            const apiKey = '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'; // Replace with your actual GPT-3 API key
 
             // Create the message object
             const messages = [{
@@ -134,13 +150,16 @@
             })
             .then((response) => response.json())
             .then((data) => {
+                console.log(data);
                 // Get the generated text from the API response
                 const generatedText = data.choices[0].message.content;
                 // Display AI response in the chatbox
                 appendMessage(generatedText, false);
+                hideLoadingSpinner();
             })
             .catch((error) => {
                 console.log("Error of Json :", error);
+                hideLoadingSpinner();
             });
         }
 
@@ -154,6 +173,16 @@
             sendMessageToAI(prompt, projectInfo.projId);
             userInput.value = "";
         });
+
+
+        sendBtn.addEventListener("click", function() {
+        const prompt = userInput.value;
+        appendMessage(prompt, true);
+        showLoadingSpinner(); // Show the loading spinner
+        sendMessageToAI(prompt, projectInfo.projId);
+        userInput.value = "";
+    });
+
     });
 </script>
 @endsection
