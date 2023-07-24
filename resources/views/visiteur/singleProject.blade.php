@@ -2,7 +2,7 @@
 @section('content')
     <div class="card">
         <div class="card-header" style="display:flex;justify-content:space-between">
-            <p>Theme : <b> {{$selected->theme}} </b></p>
+            <p style="max-width:700px">Theme : <b> {{$selected->theme}} </b></p>
             <p> Date : <b>{{$selected->created_at}}</b></p>
         </div>
         <div class="card-body">
