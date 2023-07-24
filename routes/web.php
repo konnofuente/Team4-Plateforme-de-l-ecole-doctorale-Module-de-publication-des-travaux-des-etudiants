@@ -29,6 +29,7 @@ use App\Http\Controllers\EcoleDoctorat\InscriptionController;
 use App\Http\Controllers\Admin\GestionSceancePresenceController;
 use App\Http\Controllers\EcoleDoctorat\UniteRechercheController;
 use App\Http\Controllers\EcoleDoctorat\EtudiantDossierController;
+use App\Http\Controllers\Visiteur\VisiteurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,26 +44,38 @@ use App\Http\Controllers\EcoleDoctorat\EtudiantDossierController;
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create']);
 
-Route::get('/', function () {
-    return view("publication.publication");
-})->name('publication');
+Route::get('/', [VisiteurController::class, 'index'])->name('visiteur.all');
+Route::get('/project/{projId}', [VisiteurController::class, 'single_project'])->name('visiteur.single');
+Route::get('/soummetre', [VisiteurController::class, 'create'])->name('visiteur.creer');
+Route::post('/soummetre',[VisiteurController::class, 'store'])->name('visiteur.store');
+Route::get('/soummetre_Finale', [VisiteurController::class, 'createSecond'])->name('visiteur.creerFinale');
+Route::post('/soummetre_Finale', [VisiteurController::class, 'storeSecond'])->name('visiteur.storeFinale');
+Route::get('/download/{projId}/{filePath}',[VisiteurController::class, 'download'])->name('visitor.downloadPdf');
+Route::get('/category/{category}', [VisiteurController::class, 'getCate'])->name('visiteur.all.category');
+Route::get('/search', [VisiteurController::class, 'search'])->name('visiteur.search');
+Route::post('/search', [VisiteurController::class, 'searchResults'])->name('visiteur.searchResults');
+// Route::get('/Inscription/TDs/{niv_id}/{fil_id}', [GestionInscriptionTDController::class, 'show'])->name('Inscription.show');
+// Route::get('/Inscription/Niveau', [GestionInscriptionTDController::class, 'show_niv'])->name('Inscription.show_niv');
+// Route::get('/Inscription/GroupeTd/{id}', [GestionInscriptionTDController::class, 'showTdUe'])->name('Inscription.showTdUe');
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
-
-Route::get('/GestionInscription', [GestionInscriptionTDController::class, 'index'])->name('InscriptionTd.index');
-
-Route::get('/Inscription/TDs/{niv_id}/{fil_id}', [GestionInscriptionTDController::class, 'show'])->name('Inscription.show');
-Route::get('/Inscription/Niveau', [GestionInscriptionTDController::class, 'show_niv'])->name('Inscription.show_niv');
-Route::get('/Inscription/GroupeTd/{id}', [GestionInscriptionTDController::class, 'showTdUe'])->name('Inscription.showTdUe');
-// Route::get('/Inscription/GroupeTd/Registration/{id}', [GestionInscriptionTDController::class, 'signTd'])->name('Inscription.signTd');
-Route::post('/Inscription/GroupeTd/{id}', [GestionInscriptionTDController::class, 'RegistrationTD'])->name('Inscription.RegistrationTD');
-Route::get('Inscription/form/{id}', [GestionInscriptionTDController::class, 'createForm'])->name('Inscription.form.createForm');
-Route::post('Inscription/form/{id}', [GestionInscriptionTDController::class, 'store'])->name('Inscription.form.store');
-
 
 Route::get('Admin/User/index', [UserController::class, 'index'])->name('Admin.user.index');
 Route::post('Admin/User/store', [UserController::class, 'store'])->name('Admin.user.store');
@@ -247,8 +260,20 @@ Route::post('Admin/Requete/update', [RequeteController::class, 'update'])->name(
 Route::get('Ecole_Doctorat/Reporting/index', [ReportingController::class, 'index'])->name('Ecole_Doctorat.reporting');
 
 /* Dossier */
+
+#ADMIN VERIFICATIONS (VALIDATION AND REJECTION)
 Route::get('Ecole_Doctorat/Dossier/index', [DossierController::class, 'index'])->name('Ecole_Doctorat.dossier.index');
-Route::get('Ecole_Doctorat/Dossier/show', [DossierController::class, 'show'])->name('Ecole_Doctorat.dossier.show');
+
+Route::get('Ecole_Doctorat/Dossier/voir/{id}', [DossierController::class, 'show'])->name('Ecole_Doctorat.dossier.voir');
+
+//THESE ARE THE TWO FUNCTIONS
+Route::post('Ecole_Doctorat/Dossier/voir/{id}/valider', [DossierController::class, 'valider'])->name('Ecole_Doctorat.dossier.actions.valider');
+Route::post('Ecole_Doctorat/Dossier/voir/{id}/rejeter', [DossierController::class, 'rejeter'])->name('Ecole_Doctorat.dossier.actions.rejeter');
+
+
+
+
+
 Route::get('Ecole_Doctorat/Dossier/show/{filiere_id}/{niveau_id}/{status}', [DossierController::class, 'links'])->name('Ecole_Doctorat.dossier.links');
 Route::get('Ecole_Doctorat/Dossier/jury_P', [DossierController::class, 'jury_P'])->name('Ecole_Doctorat.dossier.jury_P');
 Route::post('Ecole_Doctorat/Dossier/update', [DossierController::class, 'update'])->name('Ecole_Doctorat.dossier.update');
@@ -307,4 +332,22 @@ Route::get('Ecole_Doctorat/Email/{id}', [EmailController::class, 'index'])->name
 Route::get('Ecole_Doctorat/EmailEnvoi/{id}', [EmailController::class, 'envoieMail'])->name('Ecole_Doctorat.email.envoieMail');
 Route::get('Ecole_Doctorat/NoteEtudiant/{url}', [EmailController::class, 'noterEtudiant'])->name('Ecole_Doctorat.email.noterEtudiant');
 Route::post('Ecole_Doctorat/Note/{url}', [EmailController::class, 'note'])->name('Ecole_Doctorat.email.note');
+
+
+
+// Route::get('/', [GestionInscriptionTDController::class, 'index'])->name('InscriptionTd.index');
+// Route::get('/Inscription/TDs/{niv_id}/{fil_id}', [GestionInscriptionTDController::class, 'show'])->name('Inscription.show');
+// Route::get('/Inscription/Niveau', [GestionInscriptionTDController::class, 'show_niv'])->name('Inscription.show_niv');
+// Route::get('/Inscription/GroupeTd/{id}', [GestionInscriptionTDController::class, 'showTdUe'])->name('Inscription.showTdUe');
+
+
+
+// Route::get('/Inscription/GroupeTd/Registration/{id}', [GestionInscriptionTDController::class, 'signTd'])->name('Inscription.signTd');
+Route::post('/Inscription/GroupeTd/{id}', [GestionInscriptionTDController::class, 'RegistrationTD'])->name('Inscription.RegistrationTD');
+Route::get('Inscription/form/{id}', [GestionInscriptionTDController::class, 'createForm'])->name('Inscription.form.createForm');
+Route::post('Inscription/form/{id}', [GestionInscriptionTDController::class, 'store'])->name('Inscription.form.store');
+
+
+
+
 

@@ -26,7 +26,7 @@
                     </li>
                     <li>
                         <a href="{{ route('Ecole_Doctorat.dossier.index') }}"
-                            @if (isset($dossier)) class="active" @endif>
+                            @if (isset($projets_count) || isset($selectedProject)) class="active" @endif>
                             <i class="bi bi-circle"></i><span>Dossier @if (isset($dossier_nombre_1))
                                     @if ($dossier_nombre_1 != 0)
                                         <span class="text-success">{{ $dossier_nombre_1 }}</span>
@@ -290,7 +290,22 @@
                 </a>
             </li>
         @endif
-
+        @if (Auth::user()->profil_id == 6)
+        <li class="nav-item">
+                <a class="nav-link @if (!isset($utilisateur_c)) collapsed @endif "
+                    href="{{ route('Admin.Utilisateur.create') }}">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                    <span>Gerer mon Dossier</span>
+                </a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link @if (!isset($utilisateur_c)) collapsed @endif "
+                    href="{{ route('Admin.Utilisateur.index') }}">
+                    <i class="fa-solid fa-users-between-lines"></i>
+                    <span>Gerer mon Dossier</span>
+                </a>
+            </li> -->
+        @endif
 
 
     </ul>
