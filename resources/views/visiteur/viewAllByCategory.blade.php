@@ -40,8 +40,15 @@
               </div>
             </div>
         </div>
-        <div class="card-header">
-        <p>{{$doc->created_at}}</p>
+        <div class="card-footer" style="display:flex;justify-content:space-between;">
+            <p>{{$doc->created_at}}</p>
+            <!-- share section -->
+            <div>
+                <a  href="{{route('visiteur.single',$doc->id)}}">
+        <i class="bi bi-arrows-angle-expand"></i>
+                    <!-- <i class="bi bi-whatsapp"></i> -->
+                </a>
+            </div>
         </div>
         </div>
         @endforeach

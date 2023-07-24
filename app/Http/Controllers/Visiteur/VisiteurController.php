@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Visiteur\Projets;
 
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Redirect;
 
 class VisiteurController extends Controller
 {
@@ -155,15 +156,14 @@ class VisiteurController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function single_project($id)
     {
-        //
+        $theProject = Projets::find($id);
+        if(!$theProject){
+            return Redirect::route('visiteur.all');
+        }
+        return view('visiteur.singleProject')->with('selected',$theProject);
     }
 
     public function createSecond(){
