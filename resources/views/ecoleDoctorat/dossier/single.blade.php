@@ -11,24 +11,18 @@
             <li class="nav-item">
                 <a class="nav-link" href="#authors">Authors</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#references">References</a>
-            </li>
             </ul>
         </div>
         <div class="card-body">
         <div class="tab-content mt-3">
               <div class="tab-pane active" id="abstract" role="tabpanel">
-                <p class="card-text"><?php echo(substr($selectedProject->abstract, 0, 500))?></p>
+                <p class="card-text">{{$selectedProject->abstract}}</p>
               </div>
 
               <div class="tab-pane" id="authors" role="tabpanel" aria-labelledby="history-tab">
                 <p class="card-text">{{$selectedProject->members}}</p>
               </div>
 
-              <div class="tab-pane" id="references" role="tabpanel" aria-labelledby="deals-tab">
-                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum sapiente iusto ullam eligendi numquam fuga error provident quaerat architecto placeat sed necessitatibus officiis reprehenderit, quam, ea nemo facere consequatur fugiat.</p>
-              </div>
             </div>
         </div>
         <div class="card-footer">

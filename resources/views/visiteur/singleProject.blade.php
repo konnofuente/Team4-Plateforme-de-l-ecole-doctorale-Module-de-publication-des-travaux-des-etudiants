@@ -42,8 +42,11 @@
                     </a>
                 </p>
             </div>
-
+            <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste veniam placeat sit! Dolorem asperiores omnis officia. Similique, atque, sit blanditiis nostrum dolorem voluptatibus soluta, provident dignissimos fugiat maxime eveniet labore!
+            </div>
         </div>
+
         <div class="card-footer" style="display:flex;justify-content:space-between">
             <div>
                 <h4>ResearchHub</h4>
@@ -65,12 +68,7 @@
         </div>
     </div>
     <style>
-        h4{
-            font-variant: small-caps;
-        }
-        .social-linkss a{
-            padding-right: 10px;
-        }
+
     </style>
 @endsection
 

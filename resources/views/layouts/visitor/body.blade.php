@@ -147,7 +147,12 @@ function closeNav() {
                 //  return $(this).addClass('active')})
     </script>
 <style>
-
+        h4{
+            font-variant: small-caps;
+        }
+        .social-linkss a{
+            padding-right: 10px;
+        }
 </style>
     @yield('scripts')
 

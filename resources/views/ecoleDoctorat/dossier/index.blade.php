@@ -57,9 +57,6 @@
                         @if($unchecked_projects->count() > 0)
                         <table class="table table-hover text-center">
                             <p align="center" class="text-info">Themes Pas encore Verifier</p>
-                            @foreach ($unchecked_projects as $project)
-                                <p>{{$project->theme}}</p>
-                            @endforeach
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
