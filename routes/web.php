@@ -45,6 +45,7 @@ use App\Http\Controllers\Visiteur\VisiteurController;
 Route::get('/login', [AuthenticatedSessionController::class, 'create']);
 
 Route::get('/', [VisiteurController::class, 'index'])->name('visiteur.all');
+Route::get('/project/{projId}', [VisiteurController::class, 'single_project'])->name('visiteur.single');
 Route::get('/soummetre', [VisiteurController::class, 'create'])->name('visiteur.creer');
 Route::post('/soummetre',[VisiteurController::class, 'store'])->name('visiteur.store');
 Route::get('/soummetre_Finale', [VisiteurController::class, 'createSecond'])->name('visiteur.creerFinale');

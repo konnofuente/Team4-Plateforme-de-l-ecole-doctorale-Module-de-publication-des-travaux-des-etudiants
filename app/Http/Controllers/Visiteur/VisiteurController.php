@@ -49,7 +49,7 @@ class VisiteurController extends Controller
     {
         return view('visiteur.submitDoc');
     }
-    
+
     public function search()
     {
         return view('visiteur.search');
@@ -487,15 +487,14 @@ public function extractMemoireText(Request $request)
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function single_project($id)
     {
-        //
+        $theProject = Projets::find($id);
+        if(!$theProject){
+            return Redirect::route('visiteur.all');
+        }
+        return view('visiteur.singleProject')->with('selected',$theProject);
     }
 
     public function createSecond(){
