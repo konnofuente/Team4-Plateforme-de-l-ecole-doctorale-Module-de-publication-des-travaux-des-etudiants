@@ -235,160 +235,6 @@ public function extractTextById($projId)
 
 
 
-// public function aiAnalysis(Request $request)
-// {
-//     // Retrieve inputs from the request
-//     $projId = $request->input('projId');
-//     $prompt = $request->input('prompt');
-//     $resumeLang = $request->input('resumeLang');
-
-//     // Retrieve project information based on the project ID
-//     $selectedProject = Projets::find($projId);
-
-//     if (!$selectedProject) {
-//         return response()->json(['error' => 'Project not found'], 404);
-//     }
-
-//     // Extract relevant information to display on the AI side
-//     $projectInfo = [
-//         'theme' => $selectedProject->theme,
-//         'abstract' => $selectedProject->abstract,
-//         'language' => $selectedProject->language,
-//         // Add other relevant project information here
-//     ];
-
-//     // Set up Guzzle HTTP client
-//     $client = new Client();
-
-//     // Replace 'YOUR_API_KEY' with your actual GPT-3 API key
-//     $apiKey = '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';
-
-//     try {
-//         // Make a POST request to the GPT-3 API
-//         $response = $client->request('POST', 'https://api.openai.com/v1/chat/completions', [
-//             'headers' => [
-//                 'Content-Type' => 'application/json',
-//                 'Authorization' => 'Bearer ' . $apiKey,
-//             ],
-//             'json' => [
-//                 'model' => 'gpt-3.5-turbo',
-//                 'messages' => [
-//                     [
-//                         'role' => 'user',
-//                         'content' => $prompt,
-//                     ],
-//                 ],
-//             ],
-//         ]);
-
-//         // Process the API response
-//         $responseData = json_decode($response->getBody(), true);
-
-//         // Get the generated text from the API response
-//         $generatedText = $responseData['choices'][0]['message']['content'];
-
-//         // Create an array with all the data to be sent back to the frontend
-//         $responseData = [
-//             'projectInfo' => $projectInfo,
-//             'pdfText' => $this->extractTextById($projId),
-//             'summary' => $this->extractSummaryAlgo($pdfText),
-//             'generatedText' => $generatedText,
-//         ];
-
-//         // Return the JSON response
-//         return response()->json($responseData);
-//     } catch (\Exception $e) {
-//         // Handle API request error
-//         return response()->json(['error' => 'An error occurred while processing the request.'], 500);
-//     }
-// }
-
-
-// Controller
-
-// public function aiAnalysis(Request $request)
-// {
-//     // dd("yes");
-//     $projId = $request->input('projId');
-//     $prompt = $request->input('prompt');
-//     $resumeLang = $request->input('resumeLang');
-//     // Retrieve project information based on the project ID
-//     $selectedProject = Projets::find($projId);
-//     print($selectedProject);
-//     // echo($selectedProject);
-
-//     // dd($selectedProject);
-
-//     // if (!$selectedProject) {
-//     //     return view('visiteur.aiSide')->with('error', 'Project not found');
-//     // }
-
-//     // Extract relevant information to display on the AI side
-//     $projectInfo = [
-//         'theme' => $selectedProject->theme,
-//         'abstract' => $selectedProject->abstract,
-//         'language' => $selectedProject->language,
-//         // Add other relevant project information here
-//     ];
-//     $pdfText = $this->extractTextById($projId);
-    
-
-//     // Set up Guzzle HTTP client
-//     $client = new Client();
-
-//     // Replace 'YOUR_API_KEY' with your actual GPT-3 API key
-//     $apiKey = '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';
-
-//     // Prepare the API request data
-//     $requestData = [
-//         'prompt' => $prompt,
-//         // Additional options and parameters as needed for the GPT-3 API
-//     ];
-
-//     try {
-//         // Make a POST request to the GPT-3 API
-
-//         $response = $client->request('POST', 'https://api.openai.com/v1/chat/completions', [
-//             'headers' => [
-//                 'Content-Type' => 'application/json',
-//                 'Authorization' => $apiKey,
-//             ],
-//             'json' => [
-//                 'model' => 'gpt-3.5-turbo',
-//                 'messages' => [
-//                     [
-//                         'role' => 'user',
-//                         'content' => $prompt,
-//                     ],
-//                 ],
-    
-//             ],
-//         ]);
-
-//         // Process the API response
-//         $responseData = json_decode($response->getBody(), true);
-
-//         return $responseData;
-
-//         // Get the generated text from the API response
-//         // $generatedText = $responseData['choices'][0]['text'];
-        
-
-//         // Update the AI Side view with the generatedText and other data
-
-//         // return view('visiteur.aiSide')
-//         //     ->with('projectInfo', $projectInfo)
-//         //     ->with('pdfText', $this->extractTextById($projId))
-//         //     ->with('summary', $this->extractSummaryAlgo($pdfText))
-//         //     ->with('generatedText', $generatedText);
-//     } catch (\Exception $e) {
-//         // Handle API request 
-//         print($e);
-//         // return view('visiteur.aiSide')->with('error', 'An error occurred while processing the request.');
-//     }
-// }
-
-
 public function aiSearchMemoire(Request $request)
 {
     $projId = $request->input('projId');
@@ -491,10 +337,11 @@ public function extractMemoireText(Request $request)
     public function single_project($id)
     {
         $theProject = Projets::find($id);
+        $apiKey = env('OPENAI_API_KEY');
         if(!$theProject){
             return Redirect::route('visiteur.all');
         }
-        return view('visiteur.singleProject')->with('selected',$theProject);
+        return view('visiteur.singleProject')->with('selected',$theProject)->with('apikey',$apiKey);
     }
 
     public function createSecond(){
