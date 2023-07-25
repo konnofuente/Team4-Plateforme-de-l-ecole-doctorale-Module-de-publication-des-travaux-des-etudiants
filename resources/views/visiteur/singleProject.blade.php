@@ -185,13 +185,30 @@
             messageDiv.classList.add("message");
             if (isUser) {
                 messageDiv.classList.add("user");
+                messageDiv.textContent = text;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             } else {
                 messageDiv.classList.add("ai");
-            }
-            messageDiv.textContent = text;
-            chatMessages.appendChild(messageDiv);
+                const textSpan = document.createElement("span");
+                messageDiv.appendChild(textSpan);
+                const characters = text.split("");
 
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+                function typeNextCharacter(index) {
+                    if (index < characters.length) {
+                    textSpan.textContent += characters[index];
+                    setTimeout(function() {
+                        typeNextCharacter(index + 1);
+                    }, 25);
+                    }
+                }
+                typeNextCharacter(0);
+                chatMessages.appendChild(messageDiv);
+            }
+
+
+
+
         }
 
         function sendMessageToAI(prompt, projId) {
