@@ -31,9 +31,12 @@
         margin-left: auto;
     }
     div#loadingSpinner{
-        position: absolute;
-        bottom: 7px;
-        right: 39px;
+        margin: 10px;
+        width: fit-content;
+        margin-left: auto;
+    }
+    div#loaderDiv{
+        width: 85%;
     }
 </style>
 
@@ -96,7 +99,7 @@
                 <div id="chatbox" class="mt-4">
                     <h4 style="text-align:center" >ResearchHub Ai</h4>
                     <p style="text-align:center">With <b> ResearchHubAi </b> Get more descriptive information based on the abstract here</p>
-                    <div id="aiContainer">
+                    <!-- <div id="aiContainer">
                         <div id="chatMessages">
 
                             <div id="loadingSpinner" class="d-none">
@@ -110,23 +113,25 @@
                             <input type="text" name="userInput" class="form-control" id="userInput">
                             <button type="submit" id="sendBtn" class="btn btn-primary">Send</button>
                         </div>
-                    </div>
-
-                    <!-- <div class="form-row">
-                        <div class="form-group">
-                            <label for="userInput">Your Message:</label>
-                                <textarea
-                                    class="form-control"
-                                    id="userInput"
-                                    name="userInputOld"
-                                    rows="4"
-                                    style="resize:none;"
-                                    placeholder="Enter your question here"></textarea>
-                        </div>
-                        <div class="form-group" style="padding:20px 0px;">
-                            <button type="button" id="sendBtn" class="btn btn-primary">Send</button>
-                        </div>
                     </div> -->
+                    <div id="aiContainer">
+                        <div id="chatMessages">
+
+
+                        </div>
+                        <div id="loaderDiv">
+                        <div id="loadingSpinner" class="d-none">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inputSection" style="display:grid;grid-template-columns:6fr 1fr;gap:10px;">
+
+                            <input type="text" name="userInput" class="form-control" id="userInput">
+                            <button type="submit" id="sendBtn" class="btn btn-primary">Send</button>
+                        </div>
+                    </div>
                 </div>
         </div>
 
