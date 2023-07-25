@@ -1,11 +1,17 @@
 <style>
     /* Add some basic styling to the chatbox messages */
-    #chatMessages {
-        margin-top: 10px;
-        overflow-y: auto;
-        max-height: 300px;
-        border: 1px solid #ccc;
+    #aiContainer{
+        border: 1px solid grey;
+        border-radius: 2px;
         padding: 10px;
+        background-color: #101014;
+    }
+    #chatMessages {
+        margin: 10px;
+        overflow: auto;
+        max-height: 300px;
+        padding: 20px;
+        position: relative;
     }
 
     .message {
@@ -18,12 +24,16 @@
 
     .user {
         background-color: #e6f7ff; /* Light blue for user messages */
-        float: left;
     }
 
     .ai {
         background-color: #f0f0f0; /* Light gray for AI messages */
-        float: right;
+        margin-left: auto;
+    }
+    div#loadingSpinner{
+        position: absolute;
+        bottom: 7px;
+        right: 39px;
     }
 </style>
 
@@ -42,7 +52,7 @@
 
         <script>
             // Pass the selected to JavaScript variable
-            const apikey =@json($apikey);
+            const apikey = @json($apikey);
         </script>
 
 
@@ -83,29 +93,44 @@
                     </a>
                 </p>
             </div>
-            <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste veniam placeat sit! Dolorem asperiores omnis officia. Similique, atque, sit blanditiis nostrum dolorem voluptatibus soluta, provident dignissimos fugiat maxime eveniet labore!
-            </div>
+                <div id="chatbox" class="mt-4">
+                    <h4 style="text-align:center" >ResearchHub Ai</h4>
+                    <p style="text-align:center">With <b> ResearchHubAi </b> Get more descriptive information based on the abstract here</p>
+                    <div id="aiContainer">
+                        <div id="chatMessages">
+
+                            <div id="loadingSpinner" class="d-none">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inputSection" style="display:grid;grid-template-columns:6fr 1fr;gap:10px;">
+
+                            <input type="text" name="userInput" class="form-control" id="userInput">
+                            <button type="submit" id="sendBtn" class="btn btn-primary">Send</button>
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-row">
+                        <div class="form-group">
+                            <label for="userInput">Your Message:</label>
+                                <textarea
+                                    class="form-control"
+                                    id="userInput"
+                                    name="userInputOld"
+                                    rows="4"
+                                    style="resize:none;"
+                                    placeholder="Enter your question here"></textarea>
+                        </div>
+                        <div class="form-group" style="padding:20px 0px;">
+                            <button type="button" id="sendBtn" class="btn btn-primary">Send</button>
+                        </div>
+                    </div> -->
+                </div>
         </div>
 
-        <div id="chatbox" class="mt-4">
-            <h2 style="align-item:center" >COF AI</h2>
-            <div id="chatMessages"></div>
-            <div id="loadingSpinner" class="d-none">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="userInput">Your Message:</label>
-                    <textarea class="form-control" id="userInput" name="userInput" rows="4" placeholder="Enter your message here"></textarea>
-                </div>
-                <div class="form-group" style="padding:20px 0px;">
-                    <button type="button" id="sendBtn" class="btn btn-primary">Send</button>
-                </div>
-            </div>
-        </div>
+
 
         <div class="card-footer" style="display:flex;justify-content:space-between">
             <div>
@@ -160,6 +185,7 @@
             }
             messageDiv.textContent = text;
             chatMessages.appendChild(messageDiv);
+
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
