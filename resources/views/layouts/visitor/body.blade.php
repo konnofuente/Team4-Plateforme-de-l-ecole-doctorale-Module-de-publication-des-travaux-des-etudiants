@@ -12,6 +12,7 @@
 
   <nav id="sidebarMenu" class="d-lg-block sidebar collapse bg-white">
     <div class="position-sticky">
+        <p>Memoires</p>
       <div class="list-group list-group-flush mx-3 mt-4">
         <a href="{{route('visiteur.all')}}" class="list-group-item list-group-item-action py-2 ripple active">
           <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Memoires Recent</span>
